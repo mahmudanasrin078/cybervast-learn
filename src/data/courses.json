@@ -1,0 +1,143 @@
+{
+  "courses": [
+    {
+      "slug": "cybersecurity",
+      "title": "Cybersecurity",
+      "category": "Security",
+      "blurb": "Defend systems, networks and data against modern threats.",
+      "durationMonths": 3,
+      "instructor": {
+        "name": "David Miller",
+        "title": "Senior Cyber Security Engineer"
+      },
+      "outcomes": [
+        "Understand cybersecurity fundamentals",
+        "Identify common cyber threats",
+        "Apply security best practices"
+      ],
+      "modules": []
+    },
+
+    {
+      "slug": "frontend-development",
+      "title": "Frontend Development",
+      "category": "Development",
+      "blurb": "Learn modern web development using HTML, CSS, JavaScript and React.",
+      "durationMonths": 3,
+      "instructor": {
+        "name": "Sarah Johnson",
+        "title": "Senior Frontend Developer"
+      },
+      "outcomes": [
+        "Build responsive websites",
+        "Develop React applications",
+        "Deploy modern frontend projects"
+      ],
+      "modules": []
+    },
+
+    {
+      "slug": "data-analysis",
+      "title": "Data Analysis",
+      "category": "Data",
+      "blurb": "Analyze, visualize, and interpret data for better decision making.",
+      "durationMonths": 2,
+      "instructor": {
+        "name": "Emily Carter",
+        "title": "Data Analyst"
+      },
+      "outcomes": [
+        "Analyze datasets",
+        "Create data visualizations",
+        "Generate business insights"
+      ],
+      "modules": []
+    },
+
+    {
+      "slug": "ai-automation",
+      "title": "AI Automation",
+      "category": "AI",
+      "blurb": "Automate tasks and workflows using modern AI tools.",
+      "durationMonths": 2,
+      "instructor": {
+        "name": "Michael Brown",
+        "title": "AI Automation Specialist"
+      },
+      "outcomes": [
+        "Understand AI automation",
+        "Build AI workflows",
+        "Use AI productivity tools"
+      ],
+      "modules": []
+    },
+
+    {
+      "slug": "ui-ux-design",
+      "title": "UI/UX Design",
+      "category": "Design",
+      "blurb": "Design intuitive and user-friendly digital experiences.",
+      "durationMonths": 2,
+      "instructor": {
+        "name": "Sophia Wilson",
+        "title": "UI/UX Designer"
+      },
+      "outcomes": [
+        "Create wireframes",
+        "Design interfaces",
+        "Improve user experience"
+      ],
+      "modules": []
+    },
+
+    {
+      "slug": "digital-marketing",
+      "title": "Digital Marketing",
+      "category": "Marketing",
+      "blurb": "Learn SEO, social media, and online marketing strategies.",
+      "durationMonths": 2,
+      "instructor": {
+        "name": "Daniel Lee",
+        "title": "Digital Marketing Expert"
+      },
+      "outcomes": [
+        "Run marketing campaigns",
+        "Improve SEO",
+        "Grow online audiences"
+      ],
+      "modules": []
+    },
+
+    {
+      "slug": "project-management",
+      "title": "Project Management",
+      "category": "Management",
+      "blurb": "Plan, organize, and deliver successful projects.",
+      "durationMonths": 2,
+      "instructor": {
+        "name": "Olivia Martin",
+        "title": "Project Manager"
+      },
+      "outcomes": ["Plan projects", "Manage teams", "Track project progress"],
+      "modules": []
+    },
+
+    {
+      "slug": "virtual-assistance",
+      "title": "Virtual Assistance",
+      "category": "Business",
+      "blurb": "Develop professional virtual assistant skills for remote work.",
+      "durationMonths": 2,
+      "instructor": {
+        "name": "James Anderson",
+        "title": "Virtual Assistant Trainer"
+      },
+      "outcomes": [
+        "Manage clients",
+        "Handle administrative tasks",
+        "Work effectively remotely"
+      ],
+      "modules": []
+    }
+  ]
+}
