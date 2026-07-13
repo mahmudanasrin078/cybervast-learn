@@ -1,4 +1,4 @@
-import React from "react";
+
 
 const colors = {
   background: "#0A0A0C",
