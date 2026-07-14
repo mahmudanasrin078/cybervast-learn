@@ -15,7 +15,192 @@
         "Identify common cyber threats",
         "Apply security best practices"
       ],
-      "modules": []
+      "modules": [
+        {
+          "id": "m1",
+          "title": "Security Fundamentals",
+          "lessons": [
+            {
+              "id": "m1-l1",
+              "title": "Introduction to Cybersecurity",
+              "minutes": 15,
+              "body": "Learn the fundamentals of cybersecurity, why it is important, and the different types of cyber attacks that organizations face.",
+              "resources": [
+                {
+                  "label": "Cybersecurity Basics",
+                  "url": "https://www.cisa.gov/topics/cybersecurity-best-practices"
+                }
+              ]
+            },
+            {
+              "id": "m1-l2",
+              "title": "The CIA Triad",
+              "minutes": 18,
+              "body": "Understand the three core principles of information security: Confidentiality, Integrity and Availability.",
+              "resources": [
+                {
+                  "label": "CIA Triad",
+                  "url": "https://www.ibm.com/topics/cia-triad"
+                }
+              ]
+            },
+            {
+              "id": "m1-l3",
+              "title": "Common Security Threats",
+              "minutes": 20,
+              "body": "Learn about malware, phishing, ransomware, brute force attacks and social engineering.",
+              "resources": [
+                {
+                  "label": "OWASP Top 10",
+                  "url": "https://owasp.org/www-project-top-ten/"
+                }
+              ]
+            }
+          ],
+          "quiz": {
+            "id": "m1-q",
+            "questions": [
+              {
+                "id": "q1",
+                "prompt": "What does CIA stand for in cybersecurity?",
+                "options": [
+                  "Central Intelligence Agency",
+                  "Confidentiality, Integrity, Availability",
+                  "Cyber Internet Access",
+                  "Computer Information Analysis"
+                ],
+                "answerIndex": 1,
+                "explanation": "The CIA Triad stands for Confidentiality, Integrity and Availability."
+              },
+              {
+                "id": "q2",
+                "prompt": "Which attack tricks users into revealing sensitive information?",
+                "options": ["Firewall", "Encryption", "Phishing", "Backup"],
+                "answerIndex": 2,
+                "explanation": "Phishing attacks deceive users into sharing passwords or sensitive data."
+              }
+            ]
+          }
+        },
+        {
+          "id": "m2",
+          "title": "Network Security",
+          "lessons": [
+            {
+              "id": "m2-l1",
+              "title": "Firewalls",
+              "minutes": 18,
+              "body": "Understand how firewalls monitor and filter incoming and outgoing network traffic.",
+              "resources": [
+                {
+                  "label": "Firewall Basics",
+                  "url": "https://www.cloudflare.com/learning/ddos/glossary/firewall/"
+                }
+              ]
+            },
+            {
+              "id": "m2-l2",
+              "title": "VPN and Secure Communication",
+              "minutes": 20,
+              "body": "Learn how Virtual Private Networks encrypt internet traffic and protect user privacy.",
+              "resources": [
+                {
+                  "label": "VPN Guide",
+                  "url": "https://www.cloudflare.com/learning/access-management/what-is-a-vpn/"
+                }
+              ]
+            },
+            {
+              "id": "m2-l3",
+              "title": "Password Security",
+              "minutes": 16,
+              "body": "Learn how to create strong passwords and use multi-factor authentication.",
+              "resources": [
+                {
+                  "label": "Password Security",
+                  "url": "https://www.cisa.gov/secure-our-world/use-strong-passwords"
+                }
+              ]
+            }
+          ],
+          "quiz": {
+            "id": "m2-q",
+            "questions": [
+              {
+                "id": "q1",
+                "prompt": "What is the primary purpose of a firewall?",
+                "options": [
+                  "Increase internet speed",
+                  "Block unauthorized access",
+                  "Store passwords",
+                  "Encrypt files"
+                ],
+                "answerIndex": 1,
+                "explanation": "Firewalls protect networks by filtering unauthorized traffic."
+              }
+            ]
+          }
+        },
+        {
+          "id": "m3",
+          "title": "Ethical Hacking & Best Practices",
+          "lessons": [
+            {
+              "id": "m3-l1",
+              "title": "Ethical Hacking Basics",
+              "minutes": 22,
+              "body": "Learn how ethical hackers identify vulnerabilities to improve security.",
+              "resources": [
+                {
+                  "label": "Ethical Hacking Overview",
+                  "url": "https://www.eccouncil.org/"
+                }
+              ]
+            },
+            {
+              "id": "m3-l2",
+              "title": "Security Best Practices",
+              "minutes": 20,
+              "body": "Learn safe browsing, software updates, backups and least privilege principles.",
+              "resources": [
+                {
+                  "label": "Security Best Practices",
+                  "url": "https://www.cisa.gov/topics/cybersecurity-best-practices"
+                }
+              ]
+            },
+            {
+              "id": "m3-l3",
+              "title": "Incident Response",
+              "minutes": 18,
+              "body": "Understand how organizations detect, respond to and recover from cyber incidents.",
+              "resources": [
+                {
+                  "label": "Incident Response Guide",
+                  "url": "https://www.nist.gov/cyberframework"
+                }
+              ]
+            }
+          ],
+          "quiz": {
+            "id": "m3-q",
+            "questions": [
+              {
+                "id": "q1",
+                "prompt": "Who performs authorized security testing on systems?",
+                "options": [
+                  "Black Hat Hacker",
+                  "Ethical Hacker",
+                  "Phisher",
+                  "Spammer"
+                ],
+                "answerIndex": 1,
+                "explanation": "Ethical hackers test systems with permission to improve security."
+              }
+            ]
+          }
+        }
+      ]
     },
 
     {
@@ -33,7 +218,177 @@
         "Develop React applications",
         "Deploy modern frontend projects"
       ],
-      "modules": []
+      "modules": [
+        {
+          "id": "m1",
+          "title": "HTML & CSS Fundamentals",
+          "lessons": [
+            {
+              "id": "m1-l1",
+              "title": "Introduction to HTML",
+              "minutes": 15,
+              "body": "Learn the structure of HTML documents, tags, elements, attributes and how to build a basic web page.",
+              "resources": [
+                {
+                  "label": "MDN HTML Guide",
+                  "url": "https://developer.mozilla.org/en-US/docs/Learn/HTML"
+                }
+              ]
+            },
+            {
+              "id": "m1-l2",
+              "title": "Semantic HTML",
+              "minutes": 18,
+              "body": "Understand semantic elements like header, nav, main, section, article and footer to improve accessibility.",
+              "resources": [
+                {
+                  "label": "Semantic HTML",
+                  "url": "https://developer.mozilla.org/en-US/docs/Glossary/Semantics"
+                }
+              ]
+            },
+            {
+              "id": "m1-l3",
+              "title": "CSS Fundamentals",
+              "minutes": 20,
+              "body": "Learn selectors, colors, spacing, typography and Flexbox to style web pages.",
+              "resources": [
+                {
+                  "label": "CSS Basics",
+                  "url": "https://developer.mozilla.org/en-US/docs/Learn/CSS"
+                }
+              ]
+            }
+          ],
+          "quiz": {
+            "id": "m1-q",
+            "questions": [
+              {
+                "id": "q1",
+                "prompt": "Which HTML element is used for the largest heading?",
+                "options": ["<h6>", "<heading>", "<h1>", "<head>"],
+                "answerIndex": 2,
+                "explanation": "The <h1> tag represents the highest level heading."
+              },
+              {
+                "id": "q2",
+                "prompt": "Which CSS property changes text color?",
+                "options": ["background", "font-size", "color", "text-style"],
+                "answerIndex": 2,
+                "explanation": "The color property changes the text color."
+              }
+            ]
+          }
+        },
+        {
+          "id": "m2",
+          "title": "JavaScript Essentials",
+          "lessons": [
+            {
+              "id": "m2-l1",
+              "title": "Variables and Data Types",
+              "minutes": 18,
+              "body": "Learn let, const, strings, numbers, booleans, arrays and objects.",
+              "resources": [
+                {
+                  "label": "JavaScript Guide",
+                  "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+                }
+              ]
+            },
+            {
+              "id": "m2-l2",
+              "title": "Functions and ES6",
+              "minutes": 22,
+              "body": "Understand arrow functions, template literals, destructuring and spread operator.",
+              "resources": [
+                {
+                  "label": "ES6 Features",
+                  "url": "https://javascript.info/"
+                }
+              ]
+            },
+            {
+              "id": "m2-l3",
+              "title": "DOM Manipulation",
+              "minutes": 25,
+              "body": "Learn how JavaScript interacts with HTML using the Document Object Model.",
+              "resources": [
+                {
+                  "label": "DOM Introduction",
+                  "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model"
+                }
+              ]
+            }
+          ],
+          "quiz": {
+            "id": "m2-q",
+            "questions": [
+              {
+                "id": "q1",
+                "prompt": "Which keyword is used to declare a block scoped variable?",
+                "options": ["var", "const", "let", "Both let and const"],
+                "answerIndex": 3,
+                "explanation": "Both let and const are block scoped."
+              }
+            ]
+          }
+        },
+        {
+          "id": "m3",
+          "title": "React Fundamentals",
+          "lessons": [
+            {
+              "id": "m3-l1",
+              "title": "Components",
+              "minutes": 20,
+              "body": "Learn functional components and reusable UI design.",
+              "resources": [
+                {
+                  "label": "React Components",
+                  "url": "https://react.dev/learn"
+                }
+              ]
+            },
+            {
+              "id": "m3-l2",
+              "title": "Props and State",
+              "minutes": 22,
+              "body": "Understand how data flows through React applications.",
+              "resources": [
+                {
+                  "label": "React State",
+                  "url": "https://react.dev/learn/state-a-components-memory"
+                }
+              ]
+            },
+            {
+              "id": "m3-l3",
+              "title": "React Hooks",
+              "minutes": 25,
+              "body": "Learn useState, useEffect and custom hooks.",
+              "resources": [
+                {
+                  "label": "React Hooks",
+                  "url": "https://react.dev/reference/react"
+                }
+              ]
+            }
+          ],
+          "quiz": {
+            "id": "m3-q",
+            "questions": [
+              {
+                "id": "q1",
+                "prompt": "Which Hook is used to manage state?",
+                "options": ["useFetch", "useState", "useData", "useRoute"],
+                "answerIndex": 1,
+                "explanation": "useState is the Hook used for component state."
+              }
+            ]
+          }
+        }
+      ]
     },
 
     {

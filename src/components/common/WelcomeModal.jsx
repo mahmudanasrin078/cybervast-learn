@@ -37,7 +37,7 @@ function WelcomeModal({ onClose }) {
   return (
     <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
       <div className="bg-[#141419] rounded-xl p-8 w-[420px]">
-        <h2 className="text-3xl font-bold mb-3">Welcome</h2>
+        <h2 className="text-3xl font-bold mb-3">Welcome to CyberVast Learn</h2>
 
         <p className="text-gray-400 mb-6">Enter your name to continue</p>
         {/* Input */}

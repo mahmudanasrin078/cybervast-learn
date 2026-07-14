@@ -3,6 +3,7 @@ import { createContext, useContext, useReducer } from "react";
 
 const initialState = {
   learnerName: "",
+  enrollments: [],
 };
 // ------------
 function appReducer(state, action) {
@@ -12,6 +13,12 @@ function appReducer(state, action) {
         ...state,
         learnerName: action.payload,
       };
+
+      case "ENROLL_COURSE":
+  return {
+    ...state,
+    enrollments: [...state.enrollments, action.payload],
+  };
 
     default:
       return state;
