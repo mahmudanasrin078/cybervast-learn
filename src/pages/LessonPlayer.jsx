@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { Link, useParams } from "react-router-dom";
 
 import Container from "../components/common/Container";
 
 import coursesData from "../data/courses.json";
+
+import toast from "react-hot-toast";
+
+import {
+  saveCompletedLesson,
+  isLessonCompleted,
+} from "../storage/progressStorage";
 
 const LessonPlayer = () => {
   const { slug, lessonId } = useParams();
@@ -21,6 +28,7 @@ const LessonPlayer = () => {
   }
 
   // -------module theke current lesson ------
+
   let currentLesson = null;
 
   course.modules.forEach((module) => {
@@ -38,10 +46,29 @@ const LessonPlayer = () => {
       </Container>
     );
   }
+  // ---Lesson complete----
 
-  // =====================================
-  // সব Lesson এক Array-তে
-  // =====================================
+  const [completed, setCompleted] = useState(
+    isLessonCompleted(course.slug, currentLesson.id),
+  );
+
+  useEffect(() => {
+    setCompleted(isLessonCompleted(course.slug, currentLesson.id));
+  }, [course.slug, currentLesson.id]);
+
+  // -----Lesson Complete Function----
+
+  const handleCompleteLesson = () => {
+    if (completed) {
+      toast("Lesson already completed");
+      return;
+    }
+
+    saveCompletedLesson(course.slug, currentLesson.id);
+
+    setCompleted(true);
+    toast.success("Lesson Completed!");
+  };
 
   const allLessons = course.modules.flatMap((module) => module.lessons);
 
@@ -55,14 +82,18 @@ const LessonPlayer = () => {
   return (
     <Container>
       <section className="py-16 max-w-4xl mx-auto">
+        {/* Course Name */}
         <p className="text-violet-500">{course.title}</p>
 
+        {/* Lesson Title */}
         <h1 className="mt-4 text-5xl font-bold">{currentLesson.title}</h1>
 
+        {/* Duration */}
         <p className="mt-5 text-gray-400">
           Duration : {currentLesson.minutes} Minutes
         </p>
 
+        {/* Lesson Body */}
         <article className="mt-10 rounded-xl bg-[#17171d] p-8 leading-8">
           {currentLesson.body}
         </article>
@@ -87,32 +118,45 @@ const LessonPlayer = () => {
           </div>
         </div>
 
-         {/* --------Navigation--------*/}
+        {/*  Complete Lesson Button */}
 
-      <div className="mt-10 flex justify-between">
-        {previousLesson ? (
-          <Link
-            to={`/courses/${slug}/lessons/${previousLesson.id}`}
-            className="rounded-lg bg-gray-700 px-6 py-3 hover:bg-gray-600 transition"
+        <div className="mt-10">
+          <button
+            onClick={handleCompleteLesson}
+            disabled={completed}
+            className={`rounded-lg px-6 py-3 font-semibold transition ${
+              completed
+                ? "bg-green-600 cursor-not-allowed"
+                : "bg-violet-600 hover:bg-violet-700"
+            }`}
           >
-            ← Previous
-          </Link>
-        ) : (
-          <div></div>
-        )}
+            {completed ? "✓ Completed" : "Mark as Complete"}
+          </button>
+        </div>
+        {/* --------Navigation--------*/}
 
-        {nextLesson && (
-          <Link
-            to={`/courses/${slug}/lessons/${nextLesson.id}`}
-            className="rounded-lg bg-violet-600 px-6 py-3 hover:bg-violet-700 transition"
-          >
-            Next →
-          </Link>
-        )}
-      </div>
+        <div className="mt-10 flex justify-between">
+          {previousLesson ? (
+            <Link
+              to={`/courses/${slug}/lessons/${previousLesson.id}`}
+              className="rounded-lg bg-gray-700 px-6 py-3 hover:bg-gray-600 transition"
+            >
+              ← Previous
+            </Link>
+          ) : (
+            <div></div>
+          )}
+
+          {nextLesson && (
+            <Link
+              to={`/courses/${slug}/lessons/${nextLesson.id}`}
+              className="rounded-lg bg-violet-600 px-6 py-3 hover:bg-violet-700 transition"
+            >
+              Next →
+            </Link>
+          )}
+        </div>
       </section>
-
-     
     </Container>
   );
 };
