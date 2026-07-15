@@ -183,9 +183,12 @@ const CourseDetails = () => {
                   {/* Quiz Button */}
 
                   <div className="border-t border-gray-800 p-6">
-                    <button className="rounded-lg bg-violet-600 px-6 py-3 hover:bg-violet-700 transition">
+                    <Link
+                      to={`/courses/${course.slug}/quiz/${module.id}`}
+                      className="inline-block rounded-lg bg-violet-600 px-6 py-3 font-medium hover:bg-violet-700 transition"
+                    >
                       Start Quiz
-                    </button>
+                    </Link>
                   </div>
                 </div>
               )}
