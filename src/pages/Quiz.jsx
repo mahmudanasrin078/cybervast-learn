@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import Container from "../components/common/Container";
-import coursesData from "../data/courses.json";
-import { saveQuizScore } from "../storage/progressStorage";
-import toast from "react-hot-toast";
 
+import coursesData from "../data/courses.json";
+
+import { saveQuizScore } from "../storage/progressStorage";
+
+import toast from "react-hot-toast";
 
 const Quiz = () => {
   const { slug, moduleId } = useParams();
@@ -75,9 +77,7 @@ const Quiz = () => {
       setCurrentQuestionIndex(currentQuestionIndex - 1);
     }
   };
-
   //--------- Submit Quiz ---------
-
   const handleSubmitQuiz = () => {
     if (Object.keys(answers).length !== questions.length) {
       toast.error("Please answer all questions before submitting.");
@@ -127,28 +127,25 @@ const Quiz = () => {
                 Your certificate has been unlocked.
               </p>
               {/* Action Buttons */}
-  <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
+              <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
+                <Link
+                  to="/dashboard"
+                  className="rounded-lg bg-violet-600 px-8 py-3 font-medium hover:bg-violet-700 transition"
+                >
+                  Go to Dashboard
+                </Link>
 
-    <Link
-      to="/dashboard"
-      className="rounded-lg bg-violet-600 px-8 py-3 font-medium hover:bg-violet-700 transition"
-    >
-      Go to Dashboard
-    </Link>
-
-    <Link
-      to={`/certificate/${course.slug}`}
-      className="rounded-lg border border-green-500 px-8 py-3 font-medium text-green-400 hover:bg-green-500 hover:text-white transition"
-    >
-      View Certificate
-    </Link>
-
-  </div>
+                <Link
+                  to={`/certificate/${course.slug}`}
+                  className="rounded-lg border border-green-500 px-8 py-3 font-medium text-green-400 hover:bg-green-500 hover:text-white transition"
+                >
+                  View Certificate
+                </Link>
+              </div>
             </>
           ) : (
             <>
               {/* --------Fail ------- */}
-
               <h2 className="mt-8 text-3xl font-bold text-red-500">
                 ❌ You Failed
               </h2>
@@ -189,18 +186,15 @@ const Quiz = () => {
             {module.title} Quiz
           </h1>
 
-            <div className="mt-8 h-3 w-full rounded-full bg-[#23232c]">
-
-  <div
-    className="h-3 rounded-full bg-violet-600 transition-all duration-300"
-    style={{
-      width: `${((currentQuestionIndex + 1) / questions.length) * 100}%`,
-    }}
-  ></div>
-
-</div>
+          <div className="mt-8 h-3 w-full rounded-full bg-[#23232c]">
+            <div
+              className="h-3 rounded-full bg-violet-600 transition-all duration-300"
+              style={{
+                width: `${((currentQuestionIndex + 1) / questions.length) * 100}%`,
+              }}
+            ></div>
+          </div>
         </div>
-
 
         {/* Question */}
 

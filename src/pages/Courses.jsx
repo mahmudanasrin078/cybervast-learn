@@ -3,8 +3,11 @@ import { useMemo, useState } from "react";
 import coursesData from "../data/courses.json";
 
 import Container from "../components/common/Container";
+
 import SectionTitle from "../components/common/SectionTitle";
+
 import CourseCard from "../components/course/CourseCard";
+
 import CourseFilters from "../components/course/CourseFilters";
 
 const Courses = () => {

@@ -133,7 +133,6 @@ const CourseDetails = () => {
       </section>
 
       {/* ------ Course modules------- */}
-
       <section className="pb-20">
         <h2 className="text-3xl font-bold mb-8">Course Modules</h2>
 
@@ -144,7 +143,6 @@ const CourseDetails = () => {
               className="rounded-xl border border-gray-800 overflow-hidden"
             >
               {/* Module Header */}
-
               <button
                 onClick={() =>
                   setOpenModule(openModule === module.id ? null : module.id)

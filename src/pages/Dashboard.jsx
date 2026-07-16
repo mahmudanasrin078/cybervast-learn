@@ -1,88 +1,80 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
-
 import Container from "../components/common/Container";
 
-import { useApp } from "../context/AppContext";
-
-import coursesData from "../data/courses.json";
+import WelcomeCard from "../components/dashboard/WelcomeCard";
+import StatsCard from "../components/dashboard/StatsCard";
 
 import { getEnrollments } from "../storage/enrollmentStorage";
 
+import ContinueLearningCard from "../components/dashboard/ContinueLearningCard";
+
+import coursesData from "../data/courses.json";
+
+import EnrolledCourses from "../components/dashboard/EnrolledCourses";
+import ProgressCard from "../components/dashboard/ProgressCard";
+import RecentQuizScores from "../components/dashboard/RecentQuizScores";
+import {
+  getCompletedLessonsCount,
+  getAverageQuizScore,
+  getOverallProgress,
+} from "../storage/progressStorage";
+
 const Dashboard = () => {
-  const { state } = useApp();
+  const completedLessons = getCompletedLessonsCount();
 
-  const enrollments = getEnrollments();
+  const enrolledCourses = getEnrollments();
 
-  const enrolledCourses = coursesData.courses.filter((course) =>
-    enrollments.includes(course.slug),
+  const averageQuiz = getAverageQuizScore();
+
+  const overallProgress = getOverallProgress();
+
+  //  Enrolled continue course
+  const continueCourse = coursesData.courses.find((course) =>
+    enrolledCourses.includes(course.slug),
+  );
+
+  //
+  const enrolledCourseData = coursesData.courses.filter((course) =>
+    enrolledCourses.includes(course.slug),
   );
 
   return (
     <Container>
       <section className="py-16">
-        {/* Dashboard Header */}
+        {/* Welcome card */}
+        <WelcomeCard />
 
-        <h1 className="text-4xl font-bold">
-          Welcome Back,
-          <span className="text-violet-500"> {state.learnerName}</span>
-        
-        </h1>
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Stats card */}
+          <StatsCard title="Enrolled Courses" value={enrolledCourses.length} />
 
-        <p className="mt-3 text-gray-400">
-          You have enrolled in {enrolledCourses.length} course(s).
-        </p>
+          <StatsCard title="Completed Lessons" value={completedLessons} />
 
-        {/* Empty State */}
+          <StatsCard title="Quiz Average" value={`${averageQuiz}%`} />
+        </div>
 
-        {enrolledCourses.length === 0 ? (
-          <div className="mt-10 rounded-xl border border-dashed border-gray-700 p-10 text-center">
-            <h2 className="text-2xl font-semibold">No Courses Enrolled Yet</h2>
+        {/* Continue learning card */}
 
-            <p className="mt-3 text-gray-400">
-              Browse our courses and start your learning journey.
-            </p>
+        <div className="mt-10">
+          <ContinueLearningCard course={continueCourse} />
+        </div>
 
-            <Link
-              to="/courses"
-              className="mt-6 inline-block rounded-lg bg-violet-600 px-6 py-3 hover:bg-violet-700 transition"
-            >
-              Browse Courses
-            </Link>
-          </div>
-        ) : (
-          // Enrolled Course Cards
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {enrolledCourses.map((course) => (
-              <div
-                key={course.slug}
-                className="rounded-xl border border-gray-800 bg-[#17171d] p-6"
-              >
-                <span className="rounded-full bg-violet-600/20 px-3 py-1 text-sm text-violet-400">
-                  {course.category}
-                </span>
+        {/* Enrolled courses */}
 
-                <h2 className="mt-4 text-2xl font-bold">{course.title}</h2>
+        <div className="mt-10">
+          <EnrolledCourses courses={enrolledCourseData} />
+        </div>
 
-                <p className="mt-3 text-gray-400">{course.blurb}</p>
+        {/* Progress card */}
 
-                <div className="mt-6 flex items-center justify-between">
-                  <span className="text-sm text-gray-400">
-                    {course.durationMonths} Months
-                  </span>
+        <ProgressCard progress={overallProgress} />
 
-                  <Link
-                    to={`/courses/${course.slug}`}
-                    className="rounded-lg bg-violet-600 px-5 py-2 hover:bg-violet-700 transition"
-                  >
-                    Continue Learning
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
+        {/* Recent quiz scores */}
+
+        <div className="mt-10">
+          <RecentQuizScores />
+        </div>
       </section>
     </Container>
   );
