@@ -63,7 +63,6 @@ const LessonPlayer = () => {
       toast("Lesson already completed");
       return;
     }
-
     saveCompletedLesson(course.slug, currentLesson.id);
 
     setCompleted(true);
