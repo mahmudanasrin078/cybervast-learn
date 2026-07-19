@@ -4,10 +4,23 @@
 
 /* global style */
 
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
 body {
   font-family: "Space Grotesk", sans-serif;
   background: #0a0a0c;
   color: #f5f3f8;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1,
@@ -21,6 +34,10 @@ nav {
   font-family: "Chakra Petch", sans-serif;
 }
 
+::selection {
+  background: #7c3aed;
+  color: white;
+}
 
 /* Print Styles */
 
