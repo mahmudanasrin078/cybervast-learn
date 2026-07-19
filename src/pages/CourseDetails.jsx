@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Link, useParams } from "react-router-dom";
 
@@ -13,11 +13,20 @@ import coursesData from "../data/courses.json";
 import Container from "../components/common/Container";
 
 import { isEnrolled } from "../storage/enrollmentStorage";
+import SkeletonLoader from "../components/common/SkeletonLoader";
 
 const CourseDetails = () => {
+   const [loading, setLoading] = useState(true);
   const { dispatch } = useApp();
   const { slug } = useParams();
+  // -----------
+ useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 400);
 
+    return () => clearTimeout(timer);
+  }, []);
   const course = coursesData.courses.find((item) => item.slug === slug);
 
   const enrolled = isEnrolled(course.slug);
@@ -49,6 +58,17 @@ const CourseDetails = () => {
       </Container>
     );
   }
+
+  if (loading) {
+    return (
+      <Container>
+        <section className="py-20">
+          <SkeletonLoader count={1} />
+        </section>
+      </Container>
+    );
+  }
+
 
   return (
     <Container>

@@ -6,6 +6,8 @@ import router from "./routes/router";
 import { Toaster } from "react-hot-toast";
 import { AppProvider } from "./context/AppContext";
 
+import "react-loading-skeleton/dist/skeleton.css";
+
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AppProvider>

@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import coursesData from "../data/courses.json";
 
@@ -9,8 +9,11 @@ import SectionTitle from "../components/common/SectionTitle";
 import CourseCard from "../components/course/CourseCard";
 
 import CourseFilters from "../components/course/CourseFilters";
+import SkeletonLoader from "../components/common/SkeletonLoader";
 
 const Courses = () => {
+  const [loading, setLoading] = useState(true);
+
   const { courses } = coursesData;
 
   const [search, setSearch] = useState("");
@@ -20,6 +23,14 @@ const Courses = () => {
   const [duration, setDuration] = useState("All");
 
   // ---------
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 400);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const filteredCourses = useMemo(() => {
     return courses.filter((course) => {
       //---search match---
@@ -39,6 +50,16 @@ const Courses = () => {
       return searchMatch && categoryMatch && durationMatch;
     });
   }, [courses, search, category, duration]);
+
+  if (loading) {
+    return (
+      <Container>
+        <section className="py-20">
+          <SkeletonLoader count={6} />
+        </section>
+      </Container>
+    );
+  }
 
   return (
     <Container>

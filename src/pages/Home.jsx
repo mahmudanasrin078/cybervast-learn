@@ -8,8 +8,7 @@ import LearningJourney from "../components/home/LearningJourney";
 import Statistics from "../components/home/Statistics";
 import Testimonials from "../components/home/Testimonials";
 import CTASection from "../components/home/CTASection";
-
-
+import Container from "../components/common/Container";
 
 const Home = () => {
   //----Show Modal----
@@ -47,12 +46,11 @@ const Home = () => {
 
       {/* <LearningJourney></LearningJourney> */}
 
-<Statistics></Statistics>
+      <Statistics></Statistics>
 
-<Testimonials></Testimonials>
+      <Testimonials></Testimonials>
 
-<CTASection></CTASection>
-
+      <CTASection></CTASection>
     </>
   );
 };
