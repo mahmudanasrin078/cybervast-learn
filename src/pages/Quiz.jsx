@@ -6,6 +6,7 @@ import Container from "../components/common/Container";
 import coursesData from "../data/courses.json";
 
 import { saveQuizScore } from "../storage/progressStorage";
+import { hasCompletedCourse } from "../storage/progressStorage";
 
 import toast from "react-hot-toast";
 
@@ -22,6 +23,8 @@ const Quiz = () => {
       </Container>
     );
   }
+
+  const certificateUnlocked = hasCompletedCourse(course);
 
   //-------Present Module------
 
@@ -135,12 +138,21 @@ const Quiz = () => {
                   Go to Dashboard
                 </Link>
 
-                <Link
-                  to={`/certificate/${course.slug}`}
-                  className="rounded-lg border border-green-500 px-8 py-3 font-medium text-green-400 hover:bg-green-500 hover:text-white transition"
-                >
-                  View Certificate
-                </Link>
+                {certificateUnlocked ? (
+                  <Link
+                    to={`/certificate/${course.slug}`}
+                    className="rounded-lg bg-violet-600 px-6 py-3 hover:bg-violet-700 transition"
+                  >
+                    View Certificate
+                  </Link>
+                ) : (
+                  <button
+                    disabled
+                    className="rounded-lg bg-gray-700 px-6 py-3 cursor-not-allowed opacity-60"
+                  >
+                    Certificate Locked
+                  </button>
+                )}
               </div>
             </>
           ) : (

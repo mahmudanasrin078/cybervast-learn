@@ -6,6 +6,8 @@ import Container from "../components/common/Container";
 import coursesData from "../data/courses.json";
 
 import { getQuizScore } from "../storage/progressStorage";
+
+import { hasCompletedCourse } from "../storage/progressStorage";
 import { getLearnerName } from "../storage/learnerStorage";
 
 const Certificate = () => {
@@ -21,6 +23,24 @@ const Certificate = () => {
         <div className="py-20 text-center">
           <h1 className="text-4xl font-bold">Course Not Found</h1>
         </div>
+      </Container>
+    );
+  }
+
+  // -------------
+  const unlocked = hasCompletedCourse(course);
+
+  if (!unlocked) {
+    return (
+      <Container>
+        <section className="max-w-3xl mx-auto py-20 text-center">
+          <h1 className="text-5xl font-bold">🔒 Certificate Locked</h1>
+
+          <p className="mt-6 text-gray-400">
+            Complete all lessons and pass every module quiz with at least 80% to
+            unlock your certificate.
+          </p>
+        </section>
       </Container>
     );
   }

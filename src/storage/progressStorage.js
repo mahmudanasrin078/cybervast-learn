@@ -117,3 +117,89 @@ export const getOverallProgress = () => {
 
   return Math.round((completedLessons / totalLessons) * 100);
 };
+
+//
+
+export const hasCompletedCourse = (course) => {
+  const progress = getProgress();
+
+  const courseProgress = progress[course.slug];
+
+  if (!courseProgress) return false;
+
+  // All Lesson
+  const totalLessons = course.modules.reduce(
+    (total, module) => total + module.lessons.length,
+    0,
+  );
+
+  const completedLessons = courseProgress.completedLessons?.length || 0;
+
+  const allLessonsCompleted = completedLessons === totalLessons;
+
+  // All Quiz Passed
+
+  const allQuizPassed = course.modules.every((module) => {
+    const score = courseProgress.quizScores?.[module.id] || 0;
+
+    return score >= 80;
+  });
+
+  return allLessonsCompleted && allQuizPassed;
+};
+
+// Course Progress Percentage
+
+export const getCourseProgress = (course) => {
+  const progress = getProgress();
+
+  const courseProgress = progress[course.slug];
+
+  if (!courseProgress) return 0;
+
+  // Total Lessons
+  const totalLessons = course.modules.reduce(
+    (total, module) => total + module.lessons.length,
+    0,
+  );
+
+  // Completed Lessons
+  const completedLessons = courseProgress.completedLessons?.length || 0;
+
+  return Math.floor((completedLessons / totalLessons) * 100);
+};
+
+// Check Module Unlock
+
+export const isModuleUnlocked = (course, moduleIndex) => {
+  // First Module all time Unlock
+  if (moduleIndex === 0) {
+    return true;
+  }
+
+  const progress = getProgress();
+
+  const previousModule = course.modules[moduleIndex - 1];
+
+  const courseProgress = progress[course.slug];
+
+  if (!courseProgress) return false;
+
+  // Previous Module Lessons
+
+  const previousLessonIds = previousModule.lessons.map((lesson) => lesson.id);
+
+  const completedLessons = courseProgress.completedLessons || [];
+
+  const lessonsCompleted = previousLessonIds.every((lessonId) =>
+    completedLessons.includes(lessonId),
+  );
+
+  // Previous Quiz
+
+  const quizScore = courseProgress.quizScores?.[previousModule.id] || 0;
+
+  const quizPassed = quizScore >= 80;
+
+  return lessonsCompleted && quizPassed;
+};

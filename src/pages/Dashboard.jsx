@@ -13,12 +13,18 @@ import coursesData from "../data/courses.json";
 
 import EnrolledCourses from "../components/dashboard/EnrolledCourses";
 import ProgressCard from "../components/dashboard/ProgressCard";
+
+import CourseProgressCard from "../components/dashboard/CourseProgressCard";
+
 import RecentQuizScores from "../components/dashboard/RecentQuizScores";
 import {
   getCompletedLessonsCount,
   getAverageQuizScore,
   getOverallProgress,
+  getCourseProgress,
 } from "../storage/progressStorage";
+
+import { getCurrentStreak } from "../storage/streakStorage";
 
 const Dashboard = () => {
   const completedLessons = getCompletedLessonsCount();
@@ -28,6 +34,8 @@ const Dashboard = () => {
   const averageQuiz = getAverageQuizScore();
 
   const overallProgress = getOverallProgress();
+
+  const streak = getCurrentStreak();
 
   //  Enrolled continue course
   const continueCourse = coursesData.courses.find((course) =>
@@ -45,13 +53,18 @@ const Dashboard = () => {
         {/* Welcome card */}
         <WelcomeCard />
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
           {/* Stats card */}
           <StatsCard title="Enrolled Courses" value={enrolledCourses.length} />
 
           <StatsCard title="Completed Lessons" value={completedLessons} />
 
           <StatsCard title="Quiz Average" value={`${averageQuiz}%`} />
+
+          <StatsCard
+            title="Learning Streak"
+            value={` ${streak} Day${streak !== 1 ? "s" : ""}`}
+          />
         </div>
 
         {/* Continue learning card */}
@@ -69,6 +82,21 @@ const Dashboard = () => {
         {/* Progress card */}
 
         <ProgressCard progress={overallProgress} />
+
+        {/* ---- */}
+        <div className="mt-10">
+          <h2 className="mb-6 text-3xl font-bold">Course Progress</h2>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            {enrolledCourseData.map((course) => (
+              <CourseProgressCard
+                key={course.slug}
+                course={course}
+                progress={getCourseProgress(course)}
+              />
+            ))}
+          </div>
+        </div>
 
         {/* Recent quiz scores */}
 
