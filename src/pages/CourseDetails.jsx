@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 
 import toast from "react-hot-toast";
 
@@ -16,20 +16,30 @@ import { isEnrolled } from "../storage/enrollmentStorage";
 import SkeletonLoader from "../components/common/SkeletonLoader";
 
 const CourseDetails = () => {
-   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(true);
+
   const { dispatch } = useApp();
   const { slug } = useParams();
   // -----------
- useEffect(() => {
+  useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 400);
 
     return () => clearTimeout(timer);
   }, []);
+
   const course = coursesData.courses.find((item) => item.slug === slug);
 
-  const enrolled = isEnrolled(course.slug);
+  useEffect(() => {
+    if (course) {
+      setEnrolled(isEnrolled(course.slug));
+    }
+  }, [course]);
+
+  const [enrolled, setEnrolled] = useState(false);
 
   const [openModule, setOpenModule] = useState(null);
 
@@ -41,6 +51,7 @@ const CourseDetails = () => {
 
     saveEnrollment(course.slug);
 
+    setEnrolled(true);
     dispatch({
       type: "ENROLL_COURSE",
       payload: course.slug,
@@ -68,7 +79,6 @@ const CourseDetails = () => {
       </Container>
     );
   }
-
 
   return (
     <Container>
@@ -110,16 +120,20 @@ const CourseDetails = () => {
             {/* Button */}
 
             <button
-              onClick={handleEnroll}
-              disabled={enrolled}
-              className={`mt-8 rounded-lg px-8 py-3 font-semibold transition
-    ${
-      enrolled
-        ? "bg-green-600 cursor-not-allowed"
-        : "bg-violet-600 hover:bg-violet-700"
-    }`}
+              onClick={() => {
+                if (!enrolled) {
+                  handleEnroll();
+                } else {
+                  setOpenModule(course.modules[0].id);
+                }
+              }}
+              className={`mt-8 rounded-lg px-8 py-3 font-semibold transition ${
+                enrolled
+                  ? "bg-green-600 hover:bg-green-700"
+                  : "bg-violet-600 hover:bg-violet-700"
+              }`}
             >
-              {enrolled ? "✓ Enrolled" : "Enroll Now"}
+              {enrolled ? "Continue Learning" : "Enroll Now"}
             </button>
           </div>
 
@@ -156,63 +170,91 @@ const CourseDetails = () => {
       <section className="pb-20">
         <h2 className="text-3xl font-bold mb-8">Course Modules</h2>
 
-        <div className="space-y-4">
-          {course.modules.map((module) => (
-            <div
-              key={module.id}
-              className="rounded-xl border border-gray-800 overflow-hidden"
-            >
-              {/* Module Header */}
-              <button
-                onClick={() =>
-                  setOpenModule(openModule === module.id ? null : module.id)
+        {!enrolled ? (
+          <div className="rounded-2xl border border-dashed border-gray-700 bg-[#17171d] p-10 text-center">
+            <div className="text-6xl">🔒</div>
+
+            <h3 className="mt-6 text-2xl font-bold">
+              Enroll to Unlock Course Content
+            </h3>
+
+            <p className="mt-4 text-gray-400">
+              Please enroll in this course to access lessons and quizzes.
+            </p>
+
+            <button
+              onClick={() => {
+                if (!enrolled) {
+                  handleEnroll();
+                } else {
+                  Navigate(
+                    `/courses/${course.slug}/lessons/${course.modules[0].lessons[0].id}`,
+                  );
                 }
-                className="w-full flex items-center justify-between bg-[#17171d] px-6 py-5"
+              }}
+              className="mt-8 rounded-lg bg-violet-600 px-8 py-3 font-semibold hover:bg-violet-700 transition"
+            >
+              Enroll Now
+            </button>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {course.modules.map((module) => (
+              <div
+                key={module.id}
+                className="overflow-hidden rounded-xl border border-gray-800"
               >
-                <h3 className="text-xl font-semibold">{module.title}</h3>
+                {/* Module Header */}
 
-                <span className="text-2xl">
-                  {openModule === module.id ? "−" : "+"}
-                </span>
-              </button>
+                <button
+                  onClick={() =>
+                    setOpenModule(openModule === module.id ? null : module.id)
+                  }
+                  className="flex w-full items-center justify-between bg-[#17171d] px-6 py-5"
+                >
+                  <h3 className="text-xl font-semibold">{module.title}</h3>
 
-              {/* Module Body */}
+                  <span className="text-2xl">
+                    {openModule === module.id ? "−" : "+"}
+                  </span>
+                </button>
 
-              {openModule === module.id && (
-                <div className="bg-[#111116]">
-                  {module.lessons.map((lesson) => (
-                    <div
-                      key={lesson.id}
-                      className="border-t border-gray-800 px-6 py-5"
-                    >
-                      <Link
-                        to={`/courses/${course.slug}/lessons/${lesson.id}`}
-                        className="font-medium text-violet-400 hover:text-violet-300 transition"
+                {/* Lessons */}
+
+                {openModule === module.id && (
+                  <div className="bg-[#111116]">
+                    {module.lessons.map((lesson) => (
+                      <div
+                        key={lesson.id}
+                        className="border-t border-gray-800 px-6 py-5"
                       >
-                        {lesson.title}
+                        <Link
+                          to={`/courses/${course.slug}/lessons/${lesson.id}`}
+                          className="font-medium text-violet-400 hover:text-violet-300"
+                        >
+                          {lesson.title}
+                        </Link>
+
+                        <p className="mt-2 text-sm text-gray-400">
+                          Duration : {lesson.minutes} Minutes
+                        </p>
+                      </div>
+                    ))}
+
+                    <div className="border-t border-gray-800 p-6">
+                      <Link
+                        to={`/courses/${course.slug}/quiz/${module.id}`}
+                        className="inline-block rounded-lg bg-violet-600 px-6 py-3 hover:bg-violet-700"
+                      >
+                        Start Quiz
                       </Link>
-
-                      <p className="mt-2 text-sm text-gray-400">
-                        Duration : {lesson.minutes} Minutes
-                      </p>
                     </div>
-                  ))}
-
-                  {/* Quiz Button */}
-
-                  <div className="border-t border-gray-800 p-6">
-                    <Link
-                      to={`/courses/${course.slug}/quiz/${module.id}`}
-                      className="inline-block rounded-lg bg-violet-600 px-6 py-3 font-medium hover:bg-violet-700 transition"
-                    >
-                      Start Quiz
-                    </Link>
                   </div>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
       </section>
     </Container>
   );

@@ -127,7 +127,7 @@ const LessonPlayer = () => {
     updateStreak();
 
     setCompleted(true);
-    
+
     toast.success("Lesson Completed!");
   };
 
@@ -175,31 +175,6 @@ const LessonPlayer = () => {
             <p className="mt-5 text-gray-400">
               Duration : {currentLesson.minutes} Minutes
             </p>
-
-            {/* Lesson Body */}
-            {/* <article className="mt-10 rounded-xl bg-[#17171d] p-8 leading-8">
-              {currentLesson.body}
-            </article>
-
-            {/* ------------Resources------- */}
-
-            {/* <div className="mt-10 rounded-xl border border-gray-800 bg-[#17171d] p-6">
-              <h2 className="text-2xl font-bold mb-5">Resources</h2>
-
-              <div className="space-y-3">
-                {currentLesson.resources.map((resource, index) => (
-                  <a
-                    key={index}
-                    href={resource.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="block rounded-lg bg-[#22222b] px-5 py-4 hover:bg-violet-700 transition"
-                  >
-                    {resource.label}
-                  </a>
-                ))}
-              </div>
-            </div>  */}
 
             {/* Tabs */}
 
