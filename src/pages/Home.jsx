@@ -8,7 +8,6 @@ import LearningJourney from "../components/home/LearningJourney";
 import Statistics from "../components/home/Statistics";
 import Testimonials from "../components/home/Testimonials";
 import CTASection from "../components/home/CTASection";
-import Container from "../components/common/Container";
 
 const Home = () => {
   //----Show Modal----
@@ -29,12 +28,12 @@ const Home = () => {
 
       {/* Hero Section */}
 
-      <section className="max-w-7xl mx-auto px-6 py-24 text-center">
-        <h1 className="text-5xl font-bold">
+      <section className="mx-auto max-w-7xl px-6 py-16 text-center md:py-24">
+        <h1 className="text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
           Learn Today.
           <span className="text-violet-500"> Lead Tomorrow.</span>
         </h1>
-        <p className="mt-6 text-gray-400">
+        <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-400">
           CyberVast Learn helps you master practical skills through structured
           learning.
         </p>
@@ -44,7 +43,7 @@ const Home = () => {
 
       <WhyChooseUs></WhyChooseUs>
 
-      {/* <LearningJourney></LearningJourney> */}
+      <LearningJourney></LearningJourney>
 
       <Statistics></Statistics>
 
