@@ -132,6 +132,13 @@ const Quiz = () => {
               {/* Action Buttons */}
               <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
                 <Link
+                  to={`/courses/${course.slug}/lessons/${module.lessons[0].id}`}
+                  className="rounded-lg border border-gray-700 px-6 py-3 hover:bg-gray-800 transition"
+                >
+                  ← Back to Lesson
+                </Link>
+
+                <Link
                   to="/dashboard"
                   className="rounded-lg bg-violet-600 px-8 py-3 font-medium hover:bg-violet-700 transition"
                 >
