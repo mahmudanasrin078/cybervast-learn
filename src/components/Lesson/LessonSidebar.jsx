@@ -65,6 +65,19 @@ const LessonSidebar = ({ course, currentLessonId }) => {
                   );
                 })}
               </div>
+
+              {/* Quiz Button */}
+
+              {unlocked && (
+                <div className="mt-3 border-t border-gray-800 pt-3">
+                  <Link
+                    to={`/courses/${course.slug}/quiz/${module.id}`}
+                    className="block rounded-lg bg-[#22222b]  px-4 py-3  font-medium transition hover:bg-violet-700"
+                  >
+                    📝 Start Quiz
+                  </Link>
+                </div>
+              )}
             </div>
           );
         })}
