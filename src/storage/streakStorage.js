@@ -16,7 +16,7 @@ export const updateStreak = () => {
 
   const data = getStreak();
 
-  // Today Lesson Complete 
+  // Today Lesson Complete
   if (data.lastCompletedDate === today) {
     return;
   }
@@ -26,11 +26,7 @@ export const updateStreak = () => {
   } else {
     const last = new Date(data.lastCompletedDate);
 
-    const diff =
-      Math.floor(
-        (new Date(today) - last) /
-          (1000 * 60 * 60 * 24)
-      );
+    const diff = Math.floor((new Date(today) - last) / (1000 * 60 * 60 * 24));
 
     if (diff === 1) {
       data.streak++;
@@ -41,10 +37,7 @@ export const updateStreak = () => {
 
   data.lastCompletedDate = today;
 
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(data)
-  );
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 };
 
 // ---------- Count ----------

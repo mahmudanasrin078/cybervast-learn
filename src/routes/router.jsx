@@ -8,23 +8,22 @@ import Quiz from "../pages/Quiz";
 import Dashboard from "../pages/Dashboard";
 import Certificate from "../pages/Certificate";
 import NotFound from "../pages/NotFound";
-
-
+import ProtectedLayout from "../layouts/ProtectedLayout";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout/>,
-
+    element: <MainLayout />,
     children: [
       {
         index: true,
-        element: <Home/>,
+        element: <Home />,
       },
 
+      // Public pages
       {
         path: "courses",
-        element: <Courses/>,
+        element: <Courses />,
       },
 
       {
@@ -32,31 +31,37 @@ const router = createBrowserRouter([
         element: <CourseDetails />,
       },
 
+      // Protected pages
       {
-        path: "courses/:slug/lessons/:lessonId",
-        element: <LessonPlayer/>,
-      },
+        element: <ProtectedLayout />,
+        children: [
+          {
+            path: "dashboard",
+            element: <Dashboard />,
+          },
 
-      {
-        path: "courses/:slug/quiz/:moduleId",
-        element: <Quiz/>,
-      },
+          {
+            path: "courses/:slug/lessons/:lessonId",
+            element: <LessonPlayer />,
+          },
 
-      {
-        path: "dashboard",
-        element: <Dashboard/>,
-      },
+          {
+            path: "courses/:slug/quiz/:moduleId",
+            element: <Quiz />,
+          },
 
-      {
-        path: "certificate/:slug",
-        element: <Certificate/>,
+          {
+            path: "certificate/:slug",
+            element: <Certificate />,
+          },
+        ],
       },
     ],
   },
 
   {
     path: "*",
-    element: <NotFound/>,
+    element: <NotFound />,
   },
 ]);
 

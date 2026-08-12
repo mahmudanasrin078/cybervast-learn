@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 
 import Container from "../components/common/Container";
-
 import LessonSidebar from "../components/Lesson/LessonSidebar";
 
 import coursesData from "../data/courses.json";
@@ -16,112 +14,98 @@ import {
   isModuleUnlocked,
 } from "../storage/progressStorage";
 
-import { Navigate } from "react-router-dom";
-
 import { getLessonNote, saveLessonNote } from "../storage/lessonNotesStorage";
 
 import { updateStreak } from "../storage/streakStorage";
 
+import { isEnrolled } from "../storage/enrollmentStorage";
+
 const LessonPlayer = () => {
   const { slug, lessonId } = useParams();
 
-  // ----- founded course ------
+  // Find Current Course
+
   const course = coursesData.courses.find((item) => item.slug === slug);
 
-  if (!course) {
-    return (
-      <Container>
-        <h1 className="py-20 text-center text-3xl">Course Not Found</h1>
-      </Container>
-    );
-  }
+  // Find Current Lesson
 
-  // -------module theke current lesson ------
+  const currentLesson = course
+    ? course.modules
+        .flatMap((module) => module.lessons)
+        .find((lesson) => lesson.id === lessonId)
+    : null;
 
-  let currentLesson = null;
+  // Find Current Module Index
 
-  course.modules.forEach((module) => {
-    const lesson = module.lessons.find((item) => item.id === lessonId);
+  const currentModuleIndex = course
+    ? course.modules.findIndex((module) =>
+        module.lessons.some((lesson) => lesson.id === lessonId),
+      )
+    : -1;
 
-    if (lesson) {
-      currentLesson = lesson;
-    }
-  });
+  // Enrollment Check
 
-  if (!currentLesson) {
-    return (
-      <Container>
-        <h1 className="py-20 text-center text-3xl">Lesson Not Found</h1>
-      </Container>
-    );
-  }
+  const enrolled = course ? isEnrolled(course.slug) : false;
 
-  // Current Module Index
+  // Module Unlock Check
 
-  const currentModuleIndex = course.modules.findIndex((module) =>
-    module.lessons.some((lesson) => lesson.id === currentLesson.id),
-  );
+  const unlocked =
+    course && currentModuleIndex !== -1
+      ? isModuleUnlocked(course, currentModuleIndex)
+      : false;
 
-  // Route Guard
+  // State
 
-  const unlocked = isModuleUnlocked(course, currentModuleIndex);
-
-  if (!unlocked) {
-    toast.error(
-      "Complete the previous module and pass its quiz to unlock this lesson.",
-    );
-
-    return <Navigate to={`/courses/${course.slug}`} replace />;
-  }
-  // ---Lesson complete----
-
-  const [completed, setCompleted] = useState(
-    isLessonCompleted(course.slug, currentLesson.id),
-  );
-
-  // Active Tab
+  const [completed, setCompleted] = useState(false);
 
   const [activeTab, setActiveTab] = useState("overview");
 
-  // Notes
-
-  const [note, setNote] = useState(getLessonNote(course.slug, lessonId));
-
-  // Save Status
+  const [note, setNote] = useState("");
 
   const [saved, setSaved] = useState(true);
 
-  useEffect(() => {
-    setCompleted(isLessonCompleted(course.slug, currentLesson.id));
-  }, [course.slug, currentLesson.id]);
-
-  // Load Note when Lesson Changes
+  // Load Lesson Completion Status
 
   useEffect(() => {
-    setNote(getLessonNote(course.slug, lessonId));
-  }, [course.slug, lessonId]);
+    if (course && currentLesson) {
+      setCompleted(isLessonCompleted(course.slug, currentLesson.id));
+    }
+  }, [course, currentLesson]);
+
+  // Load Lesson Note
+
+  useEffect(() => {
+    if (course && currentLesson) {
+      setNote(getLessonNote(course.slug, currentLesson.id));
+    }
+  }, [course, currentLesson]);
 
   // Autosave Notes
 
   useEffect(() => {
+    if (!course || !currentLesson) return;
+
     setSaved(false);
 
     const timer = setTimeout(() => {
-      saveLessonNote(course.slug, lessonId, note);
+      saveLessonNote(course.slug, currentLesson.id, note);
 
       setSaved(true);
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [note, course.slug, lessonId]);
+  }, [note, course, currentLesson]);
 
-  // -----Lesson Complete Function----
+  // Handle Lesson Completion
 
   const handleCompleteLesson = () => {
+    if (!course || !currentLesson) return;
+
     if (completed) {
       toast("Lesson already completed");
       return;
     }
+
     saveCompletedLesson(course.slug, currentLesson.id);
 
     updateStreak();
@@ -131,11 +115,51 @@ const LessonPlayer = () => {
     toast.success("Lesson Completed!");
   };
 
+  // Course Not Found
+
+  if (!course) {
+    return (
+      <Container>
+        <h1 className="py-20 text-center text-3xl">Course Not Found</h1>
+      </Container>
+    );
+  }
+
+  // Lesson Not Found
+
+  if (!currentLesson) {
+    return (
+      <Container>
+        <h1 className="py-20 text-center text-3xl">Lesson Not Found</h1>
+      </Container>
+    );
+  }
+
+  // Enrollment Route Guard
+
+  if (!enrolled) {
+    return <Navigate to={`/courses/${course.slug}`} replace />;
+  }
+
+  // Module Route Guard
+
+  if (!unlocked) {
+    return <Navigate to={`/courses/${course.slug}`} replace />;
+  }
+
+  // All Lessons
+
   const allLessons = course.modules.flatMap((module) => module.lessons);
+
+  // Current Lesson Index
 
   const currentIndex = allLessons.findIndex((lesson) => lesson.id === lessonId);
 
+  // Previous Lesson
+
   const previousLesson = currentIndex > 0 ? allLessons[currentIndex - 1] : null;
+
+  // Next Lesson
 
   const nextLesson =
     currentIndex < allLessons.length - 1 ? allLessons[currentIndex + 1] : null;
@@ -152,6 +176,8 @@ const LessonPlayer = () => {
     nextLessonLocked = !isModuleUnlocked(course, nextModuleIndex);
   }
 
+  // ui
+
   return (
     <Container>
       <section className="py-16">
@@ -166,12 +192,15 @@ const LessonPlayer = () => {
 
           <div className="lg:col-span-8">
             {/* Course Name */}
+
             <p className="text-violet-500">{course.title}</p>
 
             {/* Lesson Title */}
+
             <h1 className="mt-4 text-5xl font-bold">{currentLesson.title}</h1>
 
             {/* Duration */}
+
             <p className="mt-5 text-gray-400">
               Duration : {currentLesson.minutes} Minutes
             </p>
@@ -229,7 +258,7 @@ const LessonPlayer = () => {
                         href={resource.url}
                         target="_blank"
                         rel="noreferrer"
-                        className="block rounded-lg bg-[#22222b] px-5 py-4 hover:bg-violet-700 transition"
+                        className="block rounded-lg bg-[#22222b] px-5 py-4 transition hover:bg-violet-700"
                       >
                         {resource.label}
                       </a>
@@ -257,7 +286,7 @@ const LessonPlayer = () => {
               )}
             </div>
 
-            {/*  Complete Lesson Button */}
+            {/* Complete Lesson Button */}
 
             <div className="mt-10">
               <button
@@ -265,26 +294,31 @@ const LessonPlayer = () => {
                 disabled={completed}
                 className={`rounded-lg px-6 py-3 font-semibold transition ${
                   completed
-                    ? "bg-green-600 cursor-not-allowed"
+                    ? "cursor-not-allowed bg-green-600"
                     : "bg-violet-600 hover:bg-violet-700"
                 }`}
               >
                 {completed ? "✓ Completed" : "Mark as Complete"}
               </button>
             </div>
-            {/* --------Navigation--------*/}
+
+            {/* Navigation */}
 
             <div className="mt-10 flex justify-between">
+              {/* Previous */}
+
               {previousLesson ? (
                 <Link
                   to={`/courses/${slug}/lessons/${previousLesson.id}`}
-                  className="rounded-lg bg-gray-700 px-6 py-3 hover:bg-gray-600 transition"
+                  className="rounded-lg bg-gray-700 px-6 py-3 transition hover:bg-gray-600"
                 >
                   ← Previous
                 </Link>
               ) : (
-                <div></div>
+                <div />
               )}
+
+              {/* Next */}
 
               {nextLesson ? (
                 nextLessonLocked ? (
@@ -298,7 +332,7 @@ const LessonPlayer = () => {
                 ) : (
                   <Link
                     to={`/courses/${slug}/lessons/${nextLesson.id}`}
-                    className="rounded-lg bg-violet-600 px-6 py-3 hover:bg-violet-700 transition"
+                    className="rounded-lg bg-violet-600 px-6 py-3 transition hover:bg-violet-700"
                   >
                     Next →
                   </Link>

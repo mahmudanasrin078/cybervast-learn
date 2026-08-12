@@ -1,65 +1,88 @@
 import React, { useEffect, useState } from "react";
-
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import toast from "react-hot-toast";
 
 import { useApp } from "../context/AppContext";
 
-import { saveEnrollment } from "../storage/enrollmentStorage";
+import { isEnrolled, saveEnrollment } from "../storage/enrollmentStorage";
 
 import coursesData from "../data/courses.json";
 
 import Container from "../components/common/Container";
-
-import { isEnrolled } from "../storage/enrollmentStorage";
 import SkeletonLoader from "../components/common/SkeletonLoader";
 
 const CourseDetails = () => {
   const navigate = useNavigate();
 
-  const [loading, setLoading] = useState(true);
-
   const { dispatch } = useApp();
+
   const { slug } = useParams();
-  // -----------
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 400);
 
-    return () => clearTimeout(timer);
-  }, []);
-
-  const course = coursesData.courses.find((item) => item.slug === slug);
-
-  useEffect(() => {
-    if (course) {
-      setEnrolled(isEnrolled(course.slug));
-    }
-  }, [course]);
+  // Loading state
+  const [loading, setLoading] = useState(true);
 
   const [enrolled, setEnrolled] = useState(false);
 
   const [openModule, setOpenModule] = useState(null);
 
+  //  ------------Found the Courses ------------
+  const course = coursesData.courses.find((item) => item.slug === slug);
+
+  // ---------Loading effect-----------
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 400);
+
+    // Component unmount then timer clear
+    return () => clearTimeout(timer);
+  }, []);
+
+  //  ----------Enrollment check--------
+  useEffect(() => {
+    if (course) {
+      setEnrolled(isEnrolled(course.slug));
+    }
+  }, [slug, course]);
+
+  //   -------------- Enroll function---------------
   const handleEnroll = () => {
+    // Already enrolled then show toast
     if (enrolled) {
       toast("Already Enrolled");
       return;
     }
 
+    // LocalStorage enrollment save
     saveEnrollment(course.slug);
 
+    // UI state update
     setEnrolled(true);
+
+    // Global AppContext update
     dispatch({
       type: "ENROLL_COURSE",
       payload: course.slug,
     });
 
+    // Success message
     toast.success("Successfully Enrolled!");
   };
 
+  // -------------Continue Learning---------
+  const handleContinueLearning = () => {
+    // Course module
+    const firstModule = course.modules[0];
+
+    // -------------module lesson----------
+    const firstLesson = firstModule.lessons[0];
+
+    //-------first lesson navigate --------
+    navigate(`/courses/${course.slug}/lessons/${firstLesson.id}`);
+  };
+
+  // -----------Course not found --------------
   if (!course) {
     return (
       <Container>
@@ -70,6 +93,7 @@ const CourseDetails = () => {
     );
   }
 
+  // ---------Loading  Skeleton ------------
   if (loading) {
     return (
       <Container>
@@ -80,28 +104,37 @@ const CourseDetails = () => {
     );
   }
 
+  // ------------Main UI----------
   return (
     <Container>
-      {/* ----- Hero section------ */}
+      {/* ------------Hero Section------------- */}
+
       <section className="py-16">
-        <div className="grid gap-10 lg:grid-cols-2 items-center">
-          {/* -------- Left content---------- */}
+        <div className="grid items-center gap-10 lg:grid-cols-2">
+          {/* -------------Left Content------------ */}
+
           <div>
-            {/* Category */}
+            {/*------------ Category------------ */}
+
             <span className="inline-block rounded-full bg-violet-600/20 px-4 py-1 text-sm text-violet-400">
               {course.category}
             </span>
 
-            {/* Course Title */}
-            <h1 className="mt-5 text-4xl lg:text-5xl font-bold">
+            {/*------- Course Title------------ */}
+
+            <h1 className="mt-5 text-4xl font-bold lg:text-5xl">
               {course.title}
             </h1>
 
-            {/* Description */}
-            <p className="mt-5 text-gray-400 leading-8">{course.blurb}</p>
+            {/* ----------Course Description-------- */}
 
-            {/* Course Information */}
+            <p className="mt-5 leading-8 text-gray-400">{course.blurb}</p>
+
+            {/*---------------- Course Information----------- */}
+
             <div className="mt-8 flex flex-wrap gap-4">
+              {/* Duration */}
+
               <div className="rounded-lg bg-[#17171d] px-5 py-3">
                 <p className="text-sm text-gray-400">Duration</p>
 
@@ -110,6 +143,8 @@ const CourseDetails = () => {
                 </h3>
               </div>
 
+              {/* Instructor */}
+
               <div className="rounded-lg bg-[#17171d] px-5 py-3">
                 <p className="text-sm text-gray-400">Instructor</p>
 
@@ -117,25 +152,26 @@ const CourseDetails = () => {
               </div>
             </div>
 
-            {/* Button */}
+            {/* --------------Enroll and Continue Button------------- */}
 
-            <button
-              onClick={() => {
-                if (!enrolled) {
-                  handleEnroll();
-                } else {
-                  setOpenModule(course.modules[0].id);
-                }
-              }}
-              className={`mt-8 rounded-lg px-8 py-3 font-semibold transition ${
-                enrolled
-                  ? "bg-green-600 hover:bg-green-700"
-                  : "bg-violet-600 hover:bg-violet-700"
-              }`}
-            >
-              {enrolled ? "Continue Learning" : "Enroll Now"}
-            </button>
+            {!enrolled ? (
+              <button
+                onClick={handleEnroll}
+                className="mt-8 rounded-lg bg-violet-600 px-8 py-3 font-semibold transition hover:bg-violet-700"
+              >
+                Enroll Now
+              </button>
+            ) : (
+              <button
+                onClick={handleContinueLearning}
+                className="mt-8 rounded-lg bg-green-600 px-8 py-3 font-semibold transition hover:bg-green-700"
+              >
+                Continue Learning
+              </button>
+            )}
           </div>
+
+          {/* ----------Instructor Card---------- */}
 
           <div className="rounded-2xl border border-gray-800 bg-[#17171d] p-8">
             <h2 className="text-2xl font-bold">Instructor</h2>
@@ -151,8 +187,10 @@ const CourseDetails = () => {
         </div>
       </section>
 
+      {/* --------What You'll Learn---------- */}
+
       <section className="pb-16">
-        <h2 className="text-3xl font-bold mb-8">What You'll Learn</h2>
+        <h2 className="mb-8 text-3xl font-bold">What You'll Learn</h2>
 
         <div className="grid gap-5 md:grid-cols-2">
           {course.outcomes.map((item, index) => (
@@ -166,9 +204,12 @@ const CourseDetails = () => {
         </div>
       </section>
 
-      {/* ------ Course modules------- */}
+      {/* --------------Course Modules------------ */}
+
       <section className="pb-20">
-        <h2 className="text-3xl font-bold mb-8">Course Modules</h2>
+        <h2 className="mb-8 text-3xl font-bold">Course Modules</h2>
+
+        {/* --------------User not Enrolled-------------- */}
 
         {!enrolled ? (
           <div className="rounded-2xl border border-dashed border-gray-700 bg-[#17171d] p-10 text-center">
@@ -183,28 +224,22 @@ const CourseDetails = () => {
             </p>
 
             <button
-              onClick={() => {
-                if (!enrolled) {
-                  handleEnroll();
-                } else {
-                  Navigate(
-                    `/courses/${course.slug}/lessons/${course.modules[0].lessons[0].id}`,
-                  );
-                }
-              }}
-              className="mt-8 rounded-lg bg-violet-600 px-8 py-3 font-semibold hover:bg-violet-700 transition"
+              onClick={handleEnroll}
+              className="mt-8 rounded-lg bg-violet-600 px-8 py-3 font-semibold transition hover:bg-violet-700"
             >
               Enroll Now
             </button>
           </div>
         ) : (
+          //------------ User Enrolled--------------
+
           <div className="space-y-4">
             {course.modules.map((module) => (
               <div
                 key={module.id}
                 className="overflow-hidden rounded-xl border border-gray-800"
               >
-                {/* Module Header */}
+                {/*-------------- Module Header -------------*/}
 
                 <button
                   onClick={() =>
@@ -219,7 +254,7 @@ const CourseDetails = () => {
                   </span>
                 </button>
 
-                {/* Lessons */}
+                {/* -----------Lesson----------- */}
 
                 {openModule === module.id && (
                   <div className="bg-[#111116]">
@@ -236,15 +271,17 @@ const CourseDetails = () => {
                         </Link>
 
                         <p className="mt-2 text-sm text-gray-400">
-                          Duration : {lesson.minutes} Minutes
+                          Duration: {lesson.minutes} Minutes
                         </p>
                       </div>
                     ))}
 
+                    {/*--------- Quiz ------------- */}
+
                     <div className="border-t border-gray-800 p-6">
                       <Link
                         to={`/courses/${course.slug}/quiz/${module.id}`}
-                        className="inline-block rounded-lg bg-violet-600 px-6 py-3 hover:bg-violet-700"
+                        className="inline-block rounded-lg bg-violet-600 px-6 py-3 transition hover:bg-violet-700"
                       >
                         Start Quiz
                       </Link>

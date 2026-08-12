@@ -47,7 +47,7 @@ const LessonSidebar = ({ course, currentLessonId }) => {
                       </div>
                     );
                   }
-
+                  // --------- Unlocked Lesson------
                   return (
                     <Link
                       key={lesson.id}

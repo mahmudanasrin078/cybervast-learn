@@ -1,12 +1,15 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
+import React from "react";
+import { Navigate, Outlet } from "react-router-dom";
+import { getLearnerName } from "../storage/learnerStorage";
 
 const ProtectedLayout = () => {
-    return (
-        <div>
-            <Outlet></Outlet>
-        </div>
-    );
+  const learnerName = getLearnerName();
+
+  if (!learnerName) {
+    return <Navigate to="/" />;
+  }
+
+  return <Outlet />;
 };
 
 export default ProtectedLayout;
