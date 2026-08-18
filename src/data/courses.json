@@ -406,7 +406,180 @@
         "Create data visualizations",
         "Generate business insights"
       ],
-      "modules": []
+      "modules": [
+        {
+          "id": "m1",
+          "title": "Data Analysis Fundamentals",
+          "lessons": [
+            {
+              "id": "m1-l1",
+              "title": "Introduction to Data Analysis",
+              "minutes": 15,
+              "body": "Learn what data analysis is, why it is important, and how organizations use data to make better decisions.",
+              "resources": [
+                {
+                  "label": "Data Analysis Basics",
+                  "url": "https://www.ibm.com/topics/data-analysis"
+                }
+              ]
+            },
+            {
+              "id": "m1-l2",
+              "title": "Types of Data",
+              "minutes": 18,
+              "body": "Understand different types of data, including qualitative and quantitative data, and learn how they are used in analysis.",
+              "resources": [
+                {
+                  "label": "Types of Data",
+                  "url": "https://www.ibm.com/think/topics/qualitative-vs-quantitative-data"
+                }
+              ]
+            },
+            {
+              "id": "m1-l3",
+              "title": "Data Collection and Preparation",
+              "minutes": 20,
+              "body": "Learn how data is collected, cleaned, organized and prepared before analysis.",
+              "resources": [
+                {
+                  "label": "Data Preparation",
+                  "url": "https://www.ibm.com/topics/data-preparation"
+                }
+              ]
+            }
+          ],
+          "quiz": {
+            "id": "m1-q",
+            "questions": [
+              {
+                "id": "q1",
+                "prompt": "What is the main purpose of data analysis?",
+                "options": [
+                  "To delete data",
+                  "To extract useful insights from data",
+                  "To create computer hardware",
+                  "To increase internet speed"
+                ],
+                "answerIndex": 1,
+                "explanation": "The main purpose of data analysis is to examine data and extract useful information and insights for decision making."
+              }
+            ]
+          }
+        },
+        {
+          "id": "m2",
+          "title": "Data Visualization",
+          "lessons": [
+            {
+              "id": "m2-l1",
+              "title": "Introduction to Data Visualization",
+              "minutes": 18,
+              "body": "Learn how visual representations such as charts and graphs can make data easier to understand and communicate.",
+              "resources": [
+                {
+                  "label": "Data Visualization",
+                  "url": "https://www.ibm.com/topics/data-visualization"
+                }
+              ]
+            },
+            {
+              "id": "m2-l2",
+              "title": "Charts and Graphs",
+              "minutes": 20,
+              "body": "Learn when to use common charts and graphs such as bar charts, line charts and pie charts to represent data.",
+              "resources": [
+                {
+                  "label": "Charts and Graphs",
+                  "url": "https://www.ibm.com/topics/data-visualization"
+                }
+              ]
+            },
+            {
+              "id": "m2-l3",
+              "title": "Creating Effective Visualizations",
+              "minutes": 22,
+              "body": "Understand how to choose appropriate visualizations, organize information clearly and communicate data insights effectively.",
+              "resources": [
+                {
+                  "label": "Data Visualization Guide",
+                  "url": "https://www.tableau.com/learn/articles/data-visualization"
+                }
+              ]
+            }
+          ],
+          "quiz": {
+            "id": "m2-q",
+            "questions": [
+              {
+                "id": "q1",
+                "prompt": "Which visualization is commonly used to compare values across categories?",
+                "options": ["Bar chart", "Password", "Database", "Text editor"],
+                "answerIndex": 0,
+                "explanation": "Bar charts are commonly used to compare values across different categories."
+              }
+            ]
+          }
+        },
+        {
+          "id": "m3",
+          "title": "Data Insights and Decision Making",
+          "lessons": [
+            {
+              "id": "m3-l1",
+              "title": "Exploratory Data Analysis",
+              "minutes": 20,
+              "body": "Learn how exploratory data analysis helps identify patterns, trends, relationships and unusual values in datasets.",
+              "resources": [
+                {
+                  "label": "Exploratory Data Analysis",
+                  "url": "https://www.ibm.com/think/topics/exploratory-data-analysis"
+                }
+              ]
+            },
+            {
+              "id": "m3-l2",
+              "title": "Interpreting Data",
+              "minutes": 22,
+              "body": "Learn how to interpret analytical results, identify meaningful patterns and turn findings into useful insights.",
+              "resources": [
+                {
+                  "label": "Data Analysis Guide",
+                  "url": "https://www.ibm.com/topics/data-analysis"
+                }
+              ]
+            },
+            {
+              "id": "m3-l3",
+              "title": "Business Insights and Reporting",
+              "minutes": 25,
+              "body": "Learn how to communicate analytical findings through reports and dashboards to support business decision making.",
+              "resources": [
+                {
+                  "label": "Data Storytelling",
+                  "url": "https://www.tableau.com/learn/articles/data-storytelling"
+                }
+              ]
+            }
+          ],
+          "quiz": {
+            "id": "m3-q",
+            "questions": [
+              {
+                "id": "q1",
+                "prompt": "What is an important goal of data analysis in business?",
+                "options": [
+                  "To hide information",
+                  "To support better decision making",
+                  "To remove all datasets",
+                  "To replace all employees"
+                ],
+                "answerIndex": 1,
+                "explanation": "Data analysis helps organizations understand information and make better evidence-based decisions."
+              }
+            ]
+          }
+        }
+      ]
     },
 
     {
@@ -420,11 +593,189 @@
         "title": "AI Automation Specialist"
       },
       "outcomes": [
-        "Understand AI automation",
-        "Build AI workflows",
-        "Use AI productivity tools"
+        "Build AI-powered workflows",
+        "Automate repetitive tasks",
+        "Integrate AI tools"
       ],
-      "modules": []
+      "modules": [
+        {
+          "id": "m1",
+          "title": "AI Automation Fundamentals",
+          "lessons": [
+            {
+              "id": "m1-l1",
+              "title": "Introduction to AI Automation",
+              "minutes": 15,
+              "body": "Learn what AI automation is, how artificial intelligence can be combined with automation, and how automated workflows can reduce repetitive work.",
+              "resources": [
+                {
+                  "label": "Introduction to AI",
+                  "url": "https://www.ibm.com/think/topics/artificial-intelligence"
+                }
+              ]
+            },
+            {
+              "id": "m1-l2",
+              "title": "AI Tools and Use Cases",
+              "minutes": 18,
+              "body": "Explore common AI tools and practical use cases such as content generation, customer support, data processing, research, and workflow automation.",
+              "resources": [
+                {
+                  "label": "AI Automation Overview",
+                  "url": "https://www.ibm.com/think/topics/ai-automation"
+                }
+              ]
+            },
+            {
+              "id": "m1-l3",
+              "title": "Automation Workflow Basics",
+              "minutes": 20,
+              "body": "Understand triggers, actions, conditions, and outputs and learn how these elements work together to create automated workflows.",
+              "resources": [
+                {
+                  "label": "Automation Workflow Concepts",
+                  "url": "https://zapier.com/blog/automation/"
+                }
+              ]
+            }
+          ],
+          "quiz": {
+            "id": "m1-q",
+            "questions": [
+              {
+                "id": "q1",
+                "prompt": "What is the main purpose of AI automation?",
+                "options": [
+                  "To manually repeat tasks",
+                  "To combine AI capabilities with automated workflows",
+                  "To remove all software applications",
+                  "To increase repetitive work"
+                ],
+                "answerIndex": 1,
+                "explanation": "AI automation combines artificial intelligence with automated workflows to perform tasks efficiently with less manual effort."
+              }
+            ]
+          }
+        },
+        {
+          "id": "m2",
+          "title": "Building AI-Powered Workflows",
+          "lessons": [
+            {
+              "id": "m2-l1",
+              "title": "Triggers and Actions",
+              "minutes": 18,
+              "body": "Learn how triggers start an automation and how actions define what happens after a workflow is triggered.",
+              "resources": [
+                {
+                  "label": "Workflow Automation",
+                  "url": "https://zapier.com/blog/automation/"
+                }
+              ]
+            },
+            {
+              "id": "m2-l2",
+              "title": "AI Prompts and Instructions",
+              "minutes": 20,
+              "body": "Learn how to write clear instructions for AI systems and understand how prompts influence the quality and usefulness of AI-generated results.",
+              "resources": [
+                {
+                  "label": "Prompt Engineering Guide",
+                  "url": "https://www.ibm.com/think/topics/prompt-engineering"
+                }
+              ]
+            },
+            {
+              "id": "m2-l3",
+              "title": "Connecting Apps and Services",
+              "minutes": 22,
+              "body": "Learn how different applications and services can be connected together to create useful automated workflows.",
+              "resources": [
+                {
+                  "label": "App Automation",
+                  "url": "https://zapier.com/blog/what-is-zapier/"
+                }
+              ]
+            }
+          ],
+          "quiz": {
+            "id": "m2-q",
+            "questions": [
+              {
+                "id": "q1",
+                "prompt": "What starts an automated workflow?",
+                "options": [
+                  "A trigger",
+                  "A password",
+                  "A database",
+                  "A browser"
+                ],
+                "answerIndex": 0,
+                "explanation": "A trigger is an event or condition that starts an automated workflow."
+              }
+            ]
+          }
+        },
+        {
+          "id": "m3",
+          "title": "AI Automation Projects",
+          "lessons": [
+            {
+              "id": "m3-l1",
+              "title": "Automating Business Tasks",
+              "minutes": 20,
+              "body": "Learn how AI automation can be applied to repetitive business tasks such as email processing, customer support, document handling, and reporting.",
+              "resources": [
+                {
+                  "label": "AI in Business",
+                  "url": "https://www.ibm.com/think/topics/ai-business"
+                }
+              ]
+            },
+            {
+              "id": "m3-l2",
+              "title": "Testing and Monitoring Automations",
+              "minutes": 22,
+              "body": "Learn how to test automated workflows, identify errors, monitor results, and improve workflow reliability.",
+              "resources": [
+                {
+                  "label": "Automation Best Practices",
+                  "url": "https://zapier.com/blog/automation/"
+                }
+              ]
+            },
+            {
+              "id": "m3-l3",
+              "title": "Building a Complete AI Workflow",
+              "minutes": 25,
+              "body": "Combine triggers, actions, AI instructions, and connected services to design a complete AI-powered automation workflow.",
+              "resources": [
+                {
+                  "label": "AI Automation Guide",
+                  "url": "https://www.ibm.com/think/topics/ai-automation"
+                }
+              ]
+            }
+          ],
+          "quiz": {
+            "id": "m3-q",
+            "questions": [
+              {
+                "id": "q1",
+                "prompt": "Why is testing important in AI automation?",
+                "options": [
+                  "To make workflows more complicated",
+                  "To identify errors and improve reliability",
+                  "To remove automation",
+                  "To prevent users from accessing the system"
+                ],
+                "answerIndex": 1,
+                "explanation": "Testing helps identify errors and ensures that an automated workflow works correctly and reliably."
+              }
+            ]
+          }
+        }
+      ]
     },
 
     {
@@ -442,7 +793,185 @@
         "Design interfaces",
         "Improve user experience"
       ],
-      "modules": []
+      "modules": [
+        {
+          "id": "m1",
+          "title": "UI/UX Design Fundamentals",
+          "lessons": [
+            {
+              "id": "m1-l1",
+              "title": "Introduction to UI and UX",
+              "minutes": 15,
+              "body": "Learn the difference between User Interface and User Experience and understand how both areas work together to create useful and enjoyable digital products.",
+              "resources": [
+                {
+                  "label": "Introduction to UX Design",
+                  "url": "https://www.interaction-design.org/literature/topics/ux-design"
+                }
+              ]
+            },
+            {
+              "id": "m1-l2",
+              "title": "User-Centered Design",
+              "minutes": 18,
+              "body": "Learn how to design products around user needs, goals, behaviors, and problems. Understand why users should be considered throughout the design process.",
+              "resources": [
+                {
+                  "label": "User-Centered Design",
+                  "url": "https://www.interaction-design.org/literature/topics/user-centered-design"
+                }
+              ]
+            },
+            {
+              "id": "m1-l3",
+              "title": "Design Thinking Process",
+              "minutes": 20,
+              "body": "Explore the design thinking process and learn how empathy, problem definition, ideation, prototyping, and testing can be used to solve user problems.",
+              "resources": [
+                {
+                  "label": "Design Thinking",
+                  "url": "https://www.interaction-design.org/literature/topics/design-thinking"
+                }
+              ]
+            }
+          ],
+          "quiz": {
+            "id": "m1-q",
+            "questions": [
+              {
+                "id": "q1",
+                "prompt": "What does UX mainly focus on?",
+                "options": [
+                  "Only visual colors",
+                  "The user's overall experience with a product",
+                  "Writing backend code",
+                  "Database management"
+                ],
+                "answerIndex": 1,
+                "explanation": "UX focuses on the user's overall experience, including usability, accessibility, interaction, and satisfaction."
+              }
+            ]
+          }
+        },
+        {
+          "id": "m2",
+          "title": "User Research and Wireframing",
+          "lessons": [
+            {
+              "id": "m2-l1",
+              "title": "Understanding User Research",
+              "minutes": 20,
+              "body": "Learn how user research helps designers understand user needs, behaviors, expectations, and problems before creating a product.",
+              "resources": [
+                {
+                  "label": "User Research",
+                  "url": "https://www.interaction-design.org/literature/topics/user-research"
+                }
+              ]
+            },
+            {
+              "id": "m2-l2",
+              "title": "Personas and User Journeys",
+              "minutes": 20,
+              "body": "Learn how personas represent target users and how user journey maps help designers understand the steps, needs, and pain points users experience.",
+              "resources": [
+                {
+                  "label": "Personas",
+                  "url": "https://www.interaction-design.org/literature/topics/persona"
+                }
+              ]
+            },
+            {
+              "id": "m2-l3",
+              "title": "Wireframing and Information Architecture",
+              "minutes": 22,
+              "body": "Learn how wireframes communicate the structure of a digital product and how information architecture helps organize content and navigation.",
+              "resources": [
+                {
+                  "label": "Wireframing",
+                  "url": "https://www.interaction-design.org/literature/topics/wireframing"
+                }
+              ]
+            }
+          ],
+          "quiz": {
+            "id": "m2-q",
+            "questions": [
+              {
+                "id": "q1",
+                "prompt": "What is the main purpose of a wireframe?",
+                "options": [
+                  "To define database tables",
+                  "To show the basic structure and layout of a page",
+                  "To write JavaScript code",
+                  "To create a final marketing campaign"
+                ],
+                "answerIndex": 1,
+                "explanation": "A wireframe provides a basic visual representation of a page's structure, layout, and content organization."
+              }
+            ]
+          }
+        },
+        {
+          "id": "m3",
+          "title": "Visual Design and Prototyping",
+          "lessons": [
+            {
+              "id": "m3-l1",
+              "title": "UI Visual Design Principles",
+              "minutes": 20,
+              "body": "Learn fundamental visual design principles such as hierarchy, contrast, alignment, spacing, balance, and consistency.",
+              "resources": [
+                {
+                  "label": "Visual Design Principles",
+                  "url": "https://www.interaction-design.org/literature/topics/visual-design"
+                }
+              ]
+            },
+            {
+              "id": "m3-l2",
+              "title": "Typography and Color",
+              "minutes": 18,
+              "body": "Learn how typography and color influence readability, visual hierarchy, accessibility, and the overall visual identity of a digital product.",
+              "resources": [
+                {
+                  "label": "Typography in UI Design",
+                  "url": "https://www.interaction-design.org/literature/topics/typography"
+                }
+              ]
+            },
+            {
+              "id": "m3-l3",
+              "title": "Prototyping and Usability Testing",
+              "minutes": 25,
+              "body": "Learn how prototypes simulate product interactions and how usability testing helps identify problems and improve the user experience before development.",
+              "resources": [
+                {
+                  "label": "Prototyping",
+                  "url": "https://www.interaction-design.org/literature/topics/prototyping"
+                }
+              ]
+            }
+          ],
+          "quiz": {
+            "id": "m3-q",
+            "questions": [
+              {
+                "id": "q1",
+                "prompt": "Why is usability testing important?",
+                "options": [
+                  "It helps identify problems users experience",
+                  "It removes the need for design",
+                  "It replaces all development work",
+                  "It is only used to choose colors"
+                ],
+                "answerIndex": 0,
+                "explanation": "Usability testing helps designers discover problems users experience and improve the product before final development."
+              }
+            ]
+          }
+        }
+      ]
     },
 
     {
@@ -460,7 +989,185 @@
         "Improve SEO",
         "Grow online audiences"
       ],
-      "modules": []
+      "modules": [
+        {
+          "id": "m1",
+          "title": "Digital Marketing Fundamentals",
+          "lessons": [
+            {
+              "id": "m1-l1",
+              "title": "Introduction to Digital Marketing",
+              "minutes": 15,
+              "body": "Learn the fundamentals of digital marketing and understand how businesses use digital channels to reach, engage, and convert their target audience.",
+              "resources": [
+                {
+                  "label": "Introduction to Digital Marketing",
+                  "url": "https://www.coursera.org/articles/digital-marketing"
+                }
+              ]
+            },
+            {
+              "id": "m1-l2",
+              "title": "Target Audience and Buyer Personas",
+              "minutes": 18,
+              "body": "Learn how to identify a target audience and create buyer personas based on customer needs, behaviors, goals, and challenges.",
+              "resources": [
+                {
+                  "label": "Understanding Buyer Personas",
+                  "url": "https://blog.hubspot.com/marketing/buyer-persona-research"
+                }
+              ]
+            },
+            {
+              "id": "m1-l3",
+              "title": "Digital Marketing Strategy",
+              "minutes": 20,
+              "body": "Learn how to create a basic digital marketing strategy by defining objectives, identifying audiences, selecting channels, and measuring results.",
+              "resources": [
+                {
+                  "label": "Digital Marketing Strategy",
+                  "url": "https://www.coursera.org/articles/digital-marketing-strategy"
+                }
+              ]
+            }
+          ],
+          "quiz": {
+            "id": "m1-q",
+            "questions": [
+              {
+                "id": "q1",
+                "prompt": "What is the main purpose of digital marketing?",
+                "options": [
+                  "To manage computer hardware",
+                  "To reach and engage customers through digital channels",
+                  "To create operating systems",
+                  "To manage databases"
+                ],
+                "answerIndex": 1,
+                "explanation": "Digital marketing uses digital channels to reach, engage, and convert a target audience."
+              }
+            ]
+          }
+        },
+        {
+          "id": "m2",
+          "title": "Content and Social Media Marketing",
+          "lessons": [
+            {
+              "id": "m2-l1",
+              "title": "Content Marketing Fundamentals",
+              "minutes": 20,
+              "body": "Learn how valuable and relevant content can attract a target audience, build trust, and support business goals.",
+              "resources": [
+                {
+                  "label": "Content Marketing",
+                  "url": "https://contentmarketinginstitute.com/what-is-content-marketing/"
+                }
+              ]
+            },
+            {
+              "id": "m2-l2",
+              "title": "Social Media Marketing",
+              "minutes": 20,
+              "body": "Learn how businesses use social media platforms to build awareness, engage audiences, distribute content, and develop relationships with customers.",
+              "resources": [
+                {
+                  "label": "Social Media Marketing",
+                  "url": "https://www.coursera.org/articles/social-media-marketing"
+                }
+              ]
+            },
+            {
+              "id": "m2-l3",
+              "title": "Social Media Content Planning",
+              "minutes": 22,
+              "body": "Learn how to plan social media content using content themes, publishing schedules, audience insights, and measurable goals.",
+              "resources": [
+                {
+                  "label": "Social Media Strategy",
+                  "url": "https://blog.hootsuite.com/social-media-marketing-strategy/"
+                }
+              ]
+            }
+          ],
+          "quiz": {
+            "id": "m2-q",
+            "questions": [
+              {
+                "id": "q1",
+                "prompt": "What is an important goal of content marketing?",
+                "options": [
+                  "Creating useful and relevant content for an audience",
+                  "Replacing a company's website",
+                  "Managing computer hardware",
+                  "Writing database queries"
+                ],
+                "answerIndex": 0,
+                "explanation": "Content marketing focuses on creating and distributing valuable, relevant content to attract and engage a target audience."
+              }
+            ]
+          }
+        },
+        {
+          "id": "m3",
+          "title": "SEO, Email Marketing and Analytics",
+          "lessons": [
+            {
+              "id": "m3-l1",
+              "title": "Search Engine Optimization Basics",
+              "minutes": 22,
+              "body": "Learn the fundamentals of SEO and how search engines help users discover relevant websites and content.",
+              "resources": [
+                {
+                  "label": "SEO Starter Guide",
+                  "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide"
+                }
+              ]
+            },
+            {
+              "id": "m3-l2",
+              "title": "Email Marketing",
+              "minutes": 20,
+              "body": "Learn how email marketing can be used to communicate with customers, nurture relationships, share useful content, and support conversions.",
+              "resources": [
+                {
+                  "label": "Email Marketing Guide",
+                  "url": "https://mailchimp.com/resources/email-marketing-field-guide/"
+                }
+              ]
+            },
+            {
+              "id": "m3-l3",
+              "title": "Marketing Analytics and Performance",
+              "minutes": 25,
+              "body": "Learn how to measure digital marketing performance using important metrics and use data to understand what is working and what needs improvement.",
+              "resources": [
+                {
+                  "label": "Google Analytics",
+                  "url": "https://developers.google.com/analytics"
+                }
+              ]
+            }
+          ],
+          "quiz": {
+            "id": "m3-q",
+            "questions": [
+              {
+                "id": "q1",
+                "prompt": "What is the main purpose of marketing analytics?",
+                "options": [
+                  "To design computer hardware",
+                  "To measure and understand marketing performance",
+                  "To replace social media",
+                  "To create programming languages"
+                ],
+                "answerIndex": 1,
+                "explanation": "Marketing analytics helps measure campaign performance and provides data that can be used to improve marketing decisions."
+              }
+            ]
+          }
+        }
+      ]
     },
 
     {
@@ -474,7 +1181,185 @@
         "title": "Project Manager"
       },
       "outcomes": ["Plan projects", "Manage teams", "Track project progress"],
-      "modules": []
+      "modules": [
+        {
+          "id": "m1",
+          "title": "Project Management Fundamentals",
+          "lessons": [
+            {
+              "id": "m1-l1",
+              "title": "Introduction to Project Management",
+              "minutes": 15,
+              "body": "Learn the fundamentals of project management and understand how projects are planned, organized, executed, monitored, and completed.",
+              "resources": [
+                {
+                  "label": "Project Management Basics",
+                  "url": "https://www.pmi.org/about/what-is-project-management"
+                }
+              ]
+            },
+            {
+              "id": "m1-l2",
+              "title": "Project Life Cycle",
+              "minutes": 18,
+              "body": "Learn about the major stages of a project life cycle, from initiating and planning to executing, monitoring, controlling, and closing the project.",
+              "resources": [
+                {
+                  "label": "Project Life Cycle",
+                  "url": "https://www.pmi.org/learning/library/project-life-cycle-phases-activities-8260"
+                }
+              ]
+            },
+            {
+              "id": "m1-l3",
+              "title": "Project Goals and Scope",
+              "minutes": 20,
+              "body": "Learn how to define clear project goals, identify project requirements, and establish a project scope to keep the team focused on the expected outcomes.",
+              "resources": [
+                {
+                  "label": "Project Scope",
+                  "url": "https://www.pmi.org/learning/library/project-scope-management-10058"
+                }
+              ]
+            }
+          ],
+          "quiz": {
+            "id": "m1-q",
+            "questions": [
+              {
+                "id": "q1",
+                "prompt": "What is project management?",
+                "options": [
+                  "Managing only financial records",
+                  "Applying knowledge, skills, tools, and techniques to project activities",
+                  "Writing software code",
+                  "Designing advertisements"
+                ],
+                "answerIndex": 1,
+                "explanation": "Project management involves applying knowledge, skills, tools, and techniques to project activities to meet project requirements."
+              }
+            ]
+          }
+        },
+        {
+          "id": "m2",
+          "title": "Project Planning and Team Management",
+          "lessons": [
+            {
+              "id": "m2-l1",
+              "title": "Project Planning",
+              "minutes": 20,
+              "body": "Learn how to create a project plan by defining activities, timelines, resources, responsibilities, and expected deliverables.",
+              "resources": [
+                {
+                  "label": "Project Planning",
+                  "url": "https://www.pmi.org/learning/library/project-planning-process-activities-5925"
+                }
+              ]
+            },
+            {
+              "id": "m2-l2",
+              "title": "Task Management and Scheduling",
+              "minutes": 20,
+              "body": "Learn how to break a project into manageable tasks, assign responsibilities, establish deadlines, and track progress using a project schedule.",
+              "resources": [
+                {
+                  "label": "Project Scheduling",
+                  "url": "https://www.pmi.org/learning/library/project-schedule-management-10734"
+                }
+              ]
+            },
+            {
+              "id": "m2-l3",
+              "title": "Team Communication and Collaboration",
+              "minutes": 22,
+              "body": "Learn how effective communication, collaboration, responsibility sharing, and regular updates help project teams work efficiently toward common goals.",
+              "resources": [
+                {
+                  "label": "Project Team Management",
+                  "url": "https://www.pmi.org/learning/library/project-team-development-communication-5901"
+                }
+              ]
+            }
+          ],
+          "quiz": {
+            "id": "m2-q",
+            "questions": [
+              {
+                "id": "q1",
+                "prompt": "Why is project planning important?",
+                "options": [
+                  "It removes the need for a project team",
+                  "It helps define activities, responsibilities, resources, and timelines",
+                  "It guarantees that no project changes will happen",
+                  "It replaces project communication"
+                ],
+                "answerIndex": 1,
+                "explanation": "Project planning helps organize activities, responsibilities, resources, schedules, and expected outcomes before and during project execution."
+              }
+            ]
+          }
+        },
+        {
+          "id": "m3",
+          "title": "Risk Management and Project Delivery",
+          "lessons": [
+            {
+              "id": "m3-l1",
+              "title": "Project Risk Management",
+              "minutes": 22,
+              "body": "Learn how to identify potential project risks, analyze their possible impact, and plan appropriate responses to reduce negative effects on project outcomes.",
+              "resources": [
+                {
+                  "label": "Project Risk Management",
+                  "url": "https://www.pmi.org/learning/library/project-risk-management-8260"
+                }
+              ]
+            },
+            {
+              "id": "m3-l2",
+              "title": "Monitoring Project Progress",
+              "minutes": 20,
+              "body": "Learn how project managers monitor progress, track deliverables, identify issues, and compare actual performance with the project plan.",
+              "resources": [
+                {
+                  "label": "Project Monitoring",
+                  "url": "https://www.pmi.org/learning/library/project-monitoring-control-10035"
+                }
+              ]
+            },
+            {
+              "id": "m3-l3",
+              "title": "Project Completion and Evaluation",
+              "minutes": 25,
+              "body": "Learn how to close a project, review deliverables, document lessons learned, evaluate project performance, and formally complete project activities.",
+              "resources": [
+                {
+                  "label": "Project Closing",
+                  "url": "https://www.pmi.org/learning/library/project-closeout-activities-10761"
+                }
+              ]
+            }
+          ],
+          "quiz": {
+            "id": "m3-q",
+            "questions": [
+              {
+                "id": "q1",
+                "prompt": "What is the purpose of project risk management?",
+                "options": [
+                  "To eliminate every possible project change",
+                  "To identify and respond to potential project risks",
+                  "To avoid creating a project plan",
+                  "To replace project team members"
+                ],
+                "answerIndex": 1,
+                "explanation": "Risk management helps identify potential risks, understand their impact, and plan appropriate responses."
+              }
+            ]
+          }
+        }
+      ]
     },
 
     {
@@ -492,7 +1377,185 @@
         "Handle administrative tasks",
         "Work effectively remotely"
       ],
-      "modules": []
+      "modules": [
+        {
+          "id": "m1",
+          "title": "Virtual Assistance Fundamentals",
+          "lessons": [
+            {
+              "id": "m1-l1",
+              "title": "Introduction to Virtual Assistance",
+              "minutes": 15,
+              "body": "Learn the fundamentals of virtual assistance and understand the role, responsibilities, skills, and common services provided by virtual assistants.",
+              "resources": [
+                {
+                  "label": "Virtual Assistant Basics",
+                  "url": "https://www.upwork.com/resources/what-is-a-virtual-assistant"
+                }
+              ]
+            },
+            {
+              "id": "m1-l2",
+              "title": "Virtual Assistant Roles and Responsibilities",
+              "minutes": 18,
+              "body": "Learn about common virtual assistant responsibilities such as administrative support, communication, scheduling, research, data entry, and customer support.",
+              "resources": [
+                {
+                  "label": "Virtual Assistant Responsibilities",
+                  "url": "https://www.indeed.com/career-advice/finding-a-job/what-does-virtual-assistant-do"
+                }
+              ]
+            },
+            {
+              "id": "m1-l3",
+              "title": "Essential Virtual Assistant Skills",
+              "minutes": 20,
+              "body": "Learn the important skills required for successful virtual assistance, including communication, organization, time management, attention to detail, and digital tool usage.",
+              "resources": [
+                {
+                  "label": "Virtual Assistant Skills",
+                  "url": "https://www.upwork.com/resources/virtual-assistant-skills"
+                }
+              ]
+            }
+          ],
+          "quiz": {
+            "id": "m1-q",
+            "questions": [
+              {
+                "id": "q1",
+                "prompt": "What is a virtual assistant?",
+                "options": [
+                  "A person who provides remote administrative or specialized support",
+                  "A computer operating system",
+                  "A type of database",
+                  "A physical office manager"
+                ],
+                "answerIndex": 0,
+                "explanation": "A virtual assistant provides remote administrative, technical, creative, or specialized support to clients or businesses."
+              }
+            ]
+          }
+        },
+        {
+          "id": "m2",
+          "title": "Communication and Administrative Support",
+          "lessons": [
+            {
+              "id": "m2-l1",
+              "title": "Professional Communication",
+              "minutes": 20,
+              "body": "Learn how to communicate professionally with clients and team members using email, messaging platforms, video calls, and other digital communication tools.",
+              "resources": [
+                {
+                  "label": "Professional Communication",
+                  "url": "https://www.indeed.com/career-advice/career-development/professional-communication"
+                }
+              ]
+            },
+            {
+              "id": "m2-l2",
+              "title": "Email and Calendar Management",
+              "minutes": 20,
+              "body": "Learn how virtual assistants organize emails, manage calendars, schedule appointments, set reminders, and coordinate meetings efficiently.",
+              "resources": [
+                {
+                  "label": "Calendar Management",
+                  "url": "https://support.google.com/calendar/"
+                }
+              ]
+            },
+            {
+              "id": "m2-l3",
+              "title": "Data Entry and Online Research",
+              "minutes": 22,
+              "body": "Learn how to perform accurate data entry and conduct online research while organizing information clearly and verifying important details.",
+              "resources": [
+                {
+                  "label": "Online Research Skills",
+                  "url": "https://www.indeed.com/career-advice/career-development/research-skills"
+                }
+              ]
+            }
+          ],
+          "quiz": {
+            "id": "m2-q",
+            "questions": [
+              {
+                "id": "q1",
+                "prompt": "Which skill is important when managing a client's calendar?",
+                "options": [
+                  "Ignoring meeting deadlines",
+                  "Organization and attention to detail",
+                  "Avoiding communication",
+                  "Deleting appointments"
+                ],
+                "answerIndex": 1,
+                "explanation": "Organization and attention to detail are essential for managing appointments, meetings, reminders, and scheduling changes."
+              }
+            ]
+          }
+        },
+        {
+          "id": "m3",
+          "title": "Productivity and Client Management",
+          "lessons": [
+            {
+              "id": "m3-l1",
+              "title": "Task and Time Management",
+              "minutes": 20,
+              "body": "Learn how to prioritize tasks, manage deadlines, organize daily workloads, and use productivity techniques to complete client work efficiently.",
+              "resources": [
+                {
+                  "label": "Time Management",
+                  "url": "https://www.indeed.com/career-advice/career-development/time-management"
+                }
+              ]
+            },
+            {
+              "id": "m3-l2",
+              "title": "Client Relationship Management",
+              "minutes": 22,
+              "body": "Learn how to build professional relationships with clients through clear communication, reliability, regular updates, and understanding client expectations.",
+              "resources": [
+                {
+                  "label": "Client Relationship Management",
+                  "url": "https://www.salesforce.com/resources/articles/customer-relationship-management/"
+                }
+              ]
+            },
+            {
+              "id": "m3-l3",
+              "title": "Productivity Tools and Workflow",
+              "minutes": 25,
+              "body": "Learn how digital productivity and collaboration tools can help virtual assistants manage tasks, documents, communication, deadlines, and team workflows.",
+              "resources": [
+                {
+                  "label": "Google Workspace",
+                  "url": "https://workspace.google.com/"
+                }
+              ]
+            }
+          ],
+          "quiz": {
+            "id": "m3-q",
+            "questions": [
+              {
+                "id": "q1",
+                "prompt": "Why is time management important for a virtual assistant?",
+                "options": [
+                  "It helps complete tasks efficiently and meet deadlines",
+                  "It removes the need to communicate with clients",
+                  "It prevents task prioritization",
+                  "It makes deadlines unnecessary"
+                ],
+                "answerIndex": 0,
+                "explanation": "Effective time management helps virtual assistants prioritize work, complete tasks efficiently, and meet client deadlines."
+              }
+            ]
+          }
+        }
+      ]
     }
   ]
 }

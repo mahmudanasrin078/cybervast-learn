@@ -30,7 +30,7 @@ const Statistics = () => {
       <Container>
         <div className="grid gap-8 text-center sm:grid-cols-2 lg:grid-cols-4">
           {/* Courses */}
-          <div className="rounded-xl border border-gray-800 bg-[#17171d] p-8">
+          <div className="rounded-xl border border-gray-800 bg-[#17171d] p-8  transition duration-300 hover:-translate-y-2 hover:border-violet-500 hover:shadow-lg hover:shadow-violet-500/20">
             <h2 className="text-5xl font-bold text-violet-500">
               {totalCourses}+
             </h2>
@@ -38,7 +38,7 @@ const Statistics = () => {
           </div>
 
           {/* Lessons */}
-          <div className="rounded-xl border border-gray-800 bg-[#17171d] p-8">
+          <div className="rounded-xl border border-gray-800 bg-[#17171d] p-8  transition duration-300 hover:-translate-y-2 hover:border-violet-500 hover:shadow-lg hover:shadow-violet-500/20">
             <h2 className="text-5xl font-bold text-violet-500">
               {totalLessons}+
             </h2>
@@ -46,7 +46,7 @@ const Statistics = () => {
           </div>
 
           {/* Quizzes */}
-          <div className="rounded-xl border border-gray-800 bg-[#17171d] p-8">
+          <div className="rounded-xl border border-gray-800 bg-[#17171d] p-8  transition duration-300 hover:-translate-y-2 hover:border-violet-500 hover:shadow-lg hover:shadow-violet-500/20">
             <h2 className="text-5xl font-bold text-violet-500">
               {totalQuizzes}+
             </h2>
@@ -54,8 +54,8 @@ const Statistics = () => {
           </div>
 
           {/* Certificate */}
-          <div className="rounded-xl border border-gray-800 bg-[#17171d] p-8">
-            <div className="flex justify-center">
+          <div className="rounded-xl border border-gray-800 bg-[#17171d] p-8  transition duration-300 hover:-translate-y-2 hover:border-violet-500 hover:shadow-lg hover:shadow-violet-500/20">
+            <div className="flex justify-center ">
               <Trophy size={48} className="text-violet-500" />
             </div>
             <p className="mt-3 text-gray-400">Printable Certificate</p>
