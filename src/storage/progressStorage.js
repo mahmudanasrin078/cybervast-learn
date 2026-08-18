@@ -1,17 +1,34 @@
+import coursesData from "../data/courses.json";
+import { getEnrollments } from "./enrollmentStorage";
+
 const STORAGE_KEY = "cybervast_progress";
 
-//---Progress ----
+// This localStorage key are use active course
+const ACTIVE_COURSE_KEY = "cybervast_active_course";
+
+// Get Progress
 export const getProgress = () => {
   return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
 };
 
-// Lesson complete save ---
+// Save Active Course
+export const setActiveCourse = (courseSlug) => {
+  localStorage.setItem(ACTIVE_COURSE_KEY, courseSlug);
+};
+
+// Get Active Course
+export const getActiveCourse = () => {
+  return localStorage.getItem(ACTIVE_COURSE_KEY);
+};
+
+// Lesson Complete Save
 export const saveCompletedLesson = (courseSlug, lessonId) => {
   const progress = getProgress();
 
   if (!progress[courseSlug]) {
     progress[courseSlug] = {
       completedLessons: [],
+      quizScores: {},
     };
   }
 
@@ -20,16 +37,20 @@ export const saveCompletedLesson = (courseSlug, lessonId) => {
   }
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+  // Save this course as the active course after completing the lesson.
+
+  setActiveCourse(courseSlug);
 };
 
-// --------Lesson complete check--------
+// Lesson Complete Check
+
 export const isLessonCompleted = (courseSlug, lessonId) => {
   const progress = getProgress();
 
-  return progress[courseSlug]?.completedLessons.includes(lessonId) || false;
+  return progress[courseSlug]?.completedLessons?.includes(lessonId) || false;
 };
 
-// ----------Quiz Score Save----------
+// Quiz Score Save
 
 export const saveQuizScore = (courseSlug, moduleId, score) => {
   const progress = getProgress();
@@ -41,7 +62,6 @@ export const saveQuizScore = (courseSlug, moduleId, score) => {
     };
   }
 
-  // ---------Quiz Scores  create ----------
   if (!progress[courseSlug].quizScores) {
     progress[courseSlug].quizScores = {};
   }
@@ -49,9 +69,11 @@ export const saveQuizScore = (courseSlug, moduleId, score) => {
   progress[courseSlug].quizScores[moduleId] = score;
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+
+  setActiveCourse(courseSlug);
 };
 
-//-------- Quiz Score Read --------
+// Quiz Score Read
 
 export const getQuizScore = (courseSlug, moduleId) => {
   const progress = getProgress();
@@ -59,7 +81,7 @@ export const getQuizScore = (courseSlug, moduleId) => {
   return progress[courseSlug]?.quizScores?.[moduleId] || 0;
 };
 
-// ------Total Completed Lessons-----
+// Total Completed Lessons
 
 export const getCompletedLessonsCount = () => {
   const progress = getProgress();
@@ -75,20 +97,18 @@ export const getCompletedLessonsCount = () => {
   return total;
 };
 
-//-------- Average Quiz Score ---------
+// Average Quiz Score
 
 export const getAverageQuizScore = () => {
   const progress = getProgress();
 
   let total = 0;
-
   let count = 0;
 
   Object.values(progress).forEach((course) => {
     if (course.quizScores) {
       Object.values(course.quizScores).forEach((score) => {
         total += score;
-
         count++;
       });
     }
@@ -104,22 +124,38 @@ export const getAverageQuizScore = () => {
 export const getOverallProgress = () => {
   const progress = getProgress();
 
+  const enrolledCourses = getEnrollments();
+
+  let totalLessons = 0;
   let completedLessons = 0;
 
-  Object.values(progress).forEach((course) => {
-    if (course.completedLessons) {
-      completedLessons += course.completedLessons.length;
+  coursesData.courses.forEach((course) => {
+    // Only enrolled courses progress are calculate
+
+    if (!enrolledCourses.includes(course.slug)) {
+      return;
+    }
+
+    // Course a total lessons dynamically count
+    course.modules.forEach((module) => {
+      totalLessons += module.lessons.length;
+    });
+
+    // Completed lessons count
+    const courseProgress = progress[course.slug];
+
+    if (courseProgress?.completedLessons) {
+      completedLessons += courseProgress.completedLessons.length;
     }
   });
 
-  // lesson
-  const totalLessons = 24;
+  // Division by zero prevent
+  if (totalLessons === 0) return 0;
 
   return Math.round((completedLessons / totalLessons) * 100);
 };
 
-//
-
+// Course Completed Check
 export const hasCompletedCourse = (course) => {
   const progress = getProgress();
 
@@ -127,7 +163,7 @@ export const hasCompletedCourse = (course) => {
 
   if (!courseProgress) return false;
 
-  // All Lesson
+  // All Lessons
   const totalLessons = course.modules.reduce(
     (total, module) => total + module.lessons.length,
     0,
@@ -137,7 +173,7 @@ export const hasCompletedCourse = (course) => {
 
   const allLessonsCompleted = completedLessons === totalLessons;
 
-  // All Quiz Passed
+  // All Quizzes Passed
 
   const allQuizPassed = course.modules.every((module) => {
     const score = courseProgress.quizScores?.[module.id] || 0;
@@ -166,13 +202,16 @@ export const getCourseProgress = (course) => {
   // Completed Lessons
   const completedLessons = courseProgress.completedLessons?.length || 0;
 
+  if (totalLessons === 0) return 0;
+
   return Math.floor((completedLessons / totalLessons) * 100);
 };
 
 // Check Module Unlock
 
 export const isModuleUnlocked = (course, moduleIndex) => {
-  // First Module all time Unlock
+  // First Module always unlocked
+
   if (moduleIndex === 0) {
     return true;
   }
@@ -186,7 +225,6 @@ export const isModuleUnlocked = (course, moduleIndex) => {
   if (!courseProgress) return false;
 
   // Previous Module Lessons
-
   const previousLessonIds = previousModule.lessons.map((lesson) => lesson.id);
 
   const completedLessons = courseProgress.completedLessons || [];
@@ -195,8 +233,7 @@ export const isModuleUnlocked = (course, moduleIndex) => {
     completedLessons.includes(lessonId),
   );
 
-  // Previous Quiz
-
+  // Previous Module Quiz
   const quizScore = courseProgress.quizScores?.[previousModule.id] || 0;
 
   const quizPassed = quizScore >= 80;

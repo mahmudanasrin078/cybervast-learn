@@ -12,6 +12,7 @@ import {
   saveCompletedLesson,
   isLessonCompleted,
   isModuleUnlocked,
+  setActiveCourse,
 } from "../storage/progressStorage";
 
 import { getLessonNote, saveLessonNote } from "../storage/lessonNotesStorage";
@@ -26,6 +27,14 @@ const LessonPlayer = () => {
   // Find Current Course
 
   const course = coursesData.courses.find((item) => item.slug === slug);
+
+  // Set Current Course as Active Course
+
+  useEffect(() => {
+    if (course) {
+      setActiveCourse(course.slug);
+    }
+  }, [course]);
 
   // Find Current Lesson
 
@@ -135,13 +144,13 @@ const LessonPlayer = () => {
     );
   }
 
-  // Enrollment Route Guard
+  // Enrollment Route guard
 
   if (!enrolled) {
     return <Navigate to={`/courses/${course.slug}`} replace />;
   }
 
-  // Module Route Guard
+  // Module Route guard
 
   if (!unlocked) {
     return <Navigate to={`/courses/${course.slug}`} replace />;
