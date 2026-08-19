@@ -206,7 +206,9 @@ const LessonPlayer = () => {
 
             {/* Lesson Title */}
 
-            <h1 className="mt-4 text-5xl font-bold">{currentLesson.title}</h1>
+            <h1 className="mt-4 break-words text-3xl font-bold sm:text-4xl lg:text-5xl">
+              {currentLesson.title}
+            </h1>
 
             {/* Duration */}
 
